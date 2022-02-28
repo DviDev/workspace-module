@@ -16,8 +16,8 @@ class CreateWorkspaces extends Migration
         Schema::create('workspaces', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('user_id');
-            $table->bigInteger('parent_id')->nullable();
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('parent_id')->unsigned()->nullable();
             $table->string('name', 100);
             $table->string('description', 200)->nullable();
             $table->timestamp('created_at')->useCurrent();

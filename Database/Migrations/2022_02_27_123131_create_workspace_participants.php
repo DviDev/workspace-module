@@ -16,8 +16,8 @@ class CreateWorkspaceParticipants extends Migration
         Schema::create('workspace_participants', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('workspace_id');
-            $table->bigInteger('user_id');
+            $table->bigInteger('workspace_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamp('created_at')->useCurrent();
         });
     }
