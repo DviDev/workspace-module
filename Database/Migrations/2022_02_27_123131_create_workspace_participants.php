@@ -17,8 +17,8 @@ class CreateWorkspaceParticipants extends Migration
             $table->id();
 
             $table->bigInteger('workspace_id');
-            $table->bigInteger('uer_id');
-            $table->timestamp('created_at');
+            $table->bigInteger('user_id');
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 
