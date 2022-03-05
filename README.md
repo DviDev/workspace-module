@@ -19,16 +19,16 @@ graph TD;
     Tags-->TagsAdd[add];
     Tags-->TagsRemove[remove];
     Relationship-->Links;
-    Link-->LinkAdd[add];
-    Link-->RemoveLink[remove];
+    Links-->LinkAdd[add];
+    Links-->RemoveLink[remove];
     Relationship-->Posts;
-    Post-->AddPost[add];
-    Post-->RemovePost[remove];
+    Posts-->AddPost[add];
+    Posts-->RemovePost[remove];
     Relationship-->Projects;
-    Project-->AddProject[add];
-    Project-->RemoveProject[remove];
+    Projects-->AddProject[add];
+    Projects-->RemoveProject[remove];
     Relationship-->Participants;
-    Participant-->AddParticipant[add];
-    Participant-->RemoveParticipant[remove];
+    Participants-->AddParticipant[add];
+    Participants-->RemoveParticipant[remove];
     
 ```
