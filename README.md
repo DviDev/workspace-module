@@ -19,3 +19,40 @@ graph TD;
     Participants-->ParticipantAdd[add];
     Participants-->ParticipantDel[del];    
 ```
+### Requisitos
+1. **Workspace**
+   1. **Usuário**
+      1. [ ] obrigatório
+      2. [ ] Usuário válido
+      3. [ ] Usuário ativo
+   2. **Parent**
+      1. [ ] workspace válido
+   3. **Nome** 
+      1. [ ] obrigatório
+      2. [ ] mínimo de 2 carateres
+      3. [ ] máximo de 100 caracteres
+      4. [ ] obrigatório
+   4. **Descrição**
+      1. [ ] máximo de 200 caracteres
+2. **Tags**
+   1. **Workspace**
+      1. [ ] obrigatório
+      2. [ ] válido
+   2. **Usuário responsavel**
+      1. [ ] obrigatório
+      2. [ ] valido
+      3. [ ] ativo
+   3. **Nome**
+      1. [ ] obrigatório
+      2. [ ] minimo de 1 palavra
+      3. [ ] minimo de 3 caracteres
+      4. [ ] maximo de 50 caracteres
+3. **Participantes**
+   1. **Workspace**
+      1. [ ] válido
+      2. [ ] ativo
+      3. [ ] obrigatorio
+   2. **Usuário reponsável**
+      1. [ ] válido
+      2. [ ] ativo
+      3. [ ] obrigatório
