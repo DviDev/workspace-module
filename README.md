@@ -3,9 +3,6 @@
 ```mermaid
 graph TD;
     Workspace-->Tags;
-    Workspace-->Projects;
-    Workspace-->Links;
-    Workspace-->Posts;
     Workspace-->Participants;
 ```
 ###Workspace Actions
@@ -17,18 +14,7 @@ graph TD;
     Workspace-->Tags;
     Tags-->TagsAdd[add];
     Tags-->TagsDel[del];
-    Workspace-->Relationship;
-    Relationship-->Links;
-    Links-->LinkAdd[add];
-    Links-->LinkDel[del];
-    Relationship-->Posts;
-    Posts-->PostAdd[add];
-    Posts-->PostDel[del];
-    Relationship-->Projects;
-    Projects-->ProjectAdd[add];
-    Projects-->ProjectDel[del];
-    Relationship-->Participants;
+    Workspace-->Participants;
     Participants-->ParticipantAdd[add];
-    Participants-->ParticipantDel[del];
-    
+    Participants-->ParticipantDel[del];    
 ```
