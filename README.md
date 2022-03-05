@@ -6,7 +6,7 @@ graph TD;
     Workspace-->Participants;
 ```
 
-###Workspace Actions
+### Workspace Actions
 ```mermaid
 graph TD;
     Workspace-->Create;
