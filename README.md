@@ -1,6 +1,5 @@
 # Workspace Module
 ## Simple management of the workspaces
-### Diagrama geral simplificado
 ```mermaid
 graph TD;
     Workspace-->Tags;
