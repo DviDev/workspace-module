@@ -1,10 +1,11 @@
 # Workspace Module
-## Simple workspace management
+### Simple workspace management
 ```mermaid
 graph TD;
     Workspace-->Tags;
     Workspace-->Participants;
 ```
+
 ###Workspace Actions
 ```mermaid
 graph TD;
