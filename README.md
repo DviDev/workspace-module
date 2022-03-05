@@ -1,5 +1,5 @@
 # Workspace Module
-## Simple management of the workspaces
+## Simple workspace management
 ```mermaid
 graph TD;
     Workspace-->Tags;
@@ -17,18 +17,18 @@ graph TD;
     Workspace-->Relationship;
     Relationship-->Tags;
     Tags-->TagsAdd[add];
-    Tags-->TagsRemove[remove];
+    Tags-->TagsDel[del];
     Relationship-->Links;
     Links-->LinkAdd[add];
-    Links-->RemoveLink[remove];
+    Links-->LinkDel[del];
     Relationship-->Posts;
-    Posts-->AddPost[add];
-    Posts-->RemovePost[remove];
+    Posts-->PostAdd[add];
+    Posts-->PostDel[del];
     Relationship-->Projects;
-    Projects-->AddProject[add];
-    Projects-->RemoveProject[remove];
+    Projects-->ProjectAdd[add];
+    Projects-->ProjectDel[del];
     Relationship-->Participants;
-    Participants-->AddParticipant[add];
-    Participants-->RemoveParticipant[remove];
+    Participants-->ParticipantAdd[add];
+    Participants-->ParticipantDel[del];
     
 ```
