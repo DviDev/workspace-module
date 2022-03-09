@@ -5,6 +5,9 @@ namespace Modules\Workspace\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Workspace\Entities\WorkspaceEntityModel;
+use Modules\Workspace\Models\WorkspaceModel;
+use Modules\Workspace\Repositories\WorkspaceRepository;
 
 class WorkspaceController extends Controller
 {
@@ -18,22 +21,20 @@ class WorkspaceController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('workspace::create');
-    }
-
-    /**
      * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
      */
     public function store(Request $request)
     {
-        //
+        $request->validate($this->rules());
+
+        return ($p = WorkspaceEntityModel::props())->new()
+            ->set($p->user_id, $request->get($p->user_id))
+            ->set($p->parent_id, $request->get($p->parent_id))
+            ->set($p->name, $request->get($p->name))
+            ->set($p->description, $request->get($p->description))
+            ->save();
+
+
     }
 
     /**
@@ -60,11 +61,19 @@ class WorkspaceController extends Controller
      * Update the specified resource in storage.
      * @param Request $request
      * @param int $id
-     * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $rules = $this->rules();
+        $rules['id'] = 'int|required';
+        $request->validate($rules);
+
+        return ($p = WorkspaceEntityModel::props())->new()
+            ->set($p->user_id, $request->get($p->user_id))
+            ->set($p->parent_id, $request->get($p->parent_id))
+            ->set($p->name, $request->get($p->name))
+            ->set($p->description, $request->get($p->description))
+            ->save();
     }
 
     /**
@@ -72,8 +81,22 @@ class WorkspaceController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $request->validate([
+            'id' => 'int|required'
+        ]);
+        $model = (WorkspaceModel::query()->findOrFail($request->get('id')));
+        return $model->delete();
+    }
+
+    protected function rules(): array
+    {
+        return [
+            'user_id' => 'int|required',
+            'parent_id' => 'int',
+            'name' => 'string|required|min:2|max:200',
+            'description' => 'string|max:200'
+        ];
     }
 }
