@@ -2,7 +2,9 @@
 
 namespace Modules\Workspace\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Base\Models\BaseModel;
+use Modules\Workspace\Database\factories\WorkspaceFactory;
 use Modules\Workspace\Entities\WorkspaceEntityModel;
 
 /**
@@ -12,8 +14,15 @@ use Modules\Workspace\Entities\WorkspaceEntityModel;
  */
 class WorkspaceModel extends BaseModel
 {
+    use HasFactory;
+
     function modelEntity()
     {
         return WorkspaceEntityModel::class;
+    }
+
+    protected static function newFactory()
+    {
+        return new WorkspaceFactory();
     }
 }
