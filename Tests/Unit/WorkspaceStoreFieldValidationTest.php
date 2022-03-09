@@ -2,8 +2,11 @@
 
 namespace Modules\Workspace\Tests\Unit;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Modules\Workspace\Models\WorkspaceModel;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Tests\TestCase;
 
 class WorkspaceStoreFieldValidationTest extends TestCase
@@ -16,22 +19,32 @@ class WorkspaceStoreFieldValidationTest extends TestCase
     /**
      * @test
      */
-    public function store()
+    public function storeWithInvalidUserId()
     {
         $this->postJson($this->getRoute(), [
-            'user_id' => 1,
+            'user_id' => 1000000000,
             'parent_id' => 1,
             'name' => 'aa',
             'description' => 'aa'
         ])
-        ->assertOk()
-        ->assertJsonFragment([
-            'id' => 1,
-            'user_id' => 1,
-            'parent_id' => 1,
+            ->assertStatus(404)
+            ->assertJsonFragment(['exception' => NotFoundHttpException::class]);
+    }
+
+    /**
+     * @test
+     */
+    public function storeWithInvalidParentId()
+    {
+        $user = User::factory()->create();
+        $this->postJson($this->getRoute(), [
+            'user_id' => $user->id,
+            'parent_id' => 1000000000000,
             'name' => 'aa',
             'description' => 'aa'
-        ]);
+        ])
+            ->assertStatus(404)
+            ->assertJsonFragment(['exception' => NotFoundHttpException::class]);
     }
 
     protected function getRoute(): string

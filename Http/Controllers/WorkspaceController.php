@@ -2,24 +2,15 @@
 
 namespace Modules\Workspace\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Workspace\Entities\WorkspaceEntityModel;
 use Modules\Workspace\Models\WorkspaceModel;
-use Modules\Workspace\Repositories\WorkspaceRepository;
 
 class WorkspaceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
-    public function index()
-    {
-        return view('workspace::index');
-    }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -27,34 +18,17 @@ class WorkspaceController extends Controller
     {
         $request->validate($this->rules());
 
-        return ($p = WorkspaceEntityModel::props())->new()
-            ->set($p->user_id, $request->get($p->user_id))
-            ->set($p->parent_id, $request->get($p->parent_id))
+        $p = WorkspaceEntityModel::props();
+        $user = User::query()->findOrFail($request->get($p->user_id));
+        $parent = WorkspaceModel::query()->findOrFail($request->get($p->parent_id));
+        return $p->new()
+            ->set($p->user_id, $user->id)
+            ->set($p->parent_id, $parent->id)
             ->set($p->name, $request->get($p->name))
             ->set($p->description, $request->get($p->description))
             ->save();
 
 
-    }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('workspace::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('workspace::edit');
     }
 
     /**

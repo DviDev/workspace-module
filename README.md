@@ -21,19 +21,20 @@ graph TD;
 ```
 ### Requisitos
 1. **Workspace**
-   1. **User**
-      1. [ ] required
-      2. [ ] valid user
-      3. [ ] Usuário ativo
-   2. **Parent**
-      1. [ ] workspace válido
-   3. **Name** 
-      1. [ ] obrigatório
-      2. [ ] mínimo de 2 carateres
-      3. [ ] máximo de 100 caracteres
-      4. [ ] obrigatório
-   4. **Description**
-      1. [ ] máximo de 200 caracteres
+   1. Field validartions
+      1. **User**
+         1. [x] required
+         2. [x] valid user
+         3. [ ] Usuário ativo
+      2. **Parent**
+         1. [ ] workspace válido
+      3. **Name** 
+         1. [ ] obrigatório
+         2. [ ] mínimo de 2 carateres
+         3. [ ] máximo de 100 caracteres
+         4. [ ] obrigatório
+      4. **Description**
+         1. [ ] máximo de 200 caracteres
 2. **Tags**
    1. **Workspace**
       1. [ ] obrigatório
