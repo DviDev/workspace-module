@@ -5,7 +5,6 @@ namespace Modules\Workspace\Tests\Unit;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Modules\Workspace\Models\WorkspaceModel;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Tests\TestCase;
 
