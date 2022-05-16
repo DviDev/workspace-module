@@ -46,6 +46,21 @@ class WorkspaceStoreFieldValidationTest extends TestCase
             ->assertJsonFragment(['exception' => NotFoundHttpException::class]);
     }
 
+    /**
+     * @test
+     */
+    public function storeWithInvalidName()
+    {
+        $this->actingAs(User::factory()->create());
+        $this->postJson($this->getRoute(), [
+            'parent_id' => 1,
+            'name' => '',
+            'description' => 'aa'
+        ])
+            ->assertStatus(422)
+            ->assertJsonFragment(['name' => ['The name field is required.']]);
+    }
+
     protected function getRoute(): string
     {
         return route('workspace.store');

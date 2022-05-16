@@ -7,28 +7,28 @@ trait WorkspaceValidations
     /**
      * @test
      */
-    public function validatesUserIdAsRequired()
-    {
-        $this->postJson($this->getRoute(), [
-            'user_id' => null
-        ])
-            ->assertStatus(422)
-            ->assertJsonValidationErrors(['user_id' =>
-                [__('validation.required', ['attribute' => 'user id'])]
-            ]);
-    }
+//    public function validatesUserIdAsRequired()
+//    {
+//        $this->postJson($this->getRoute(), [
+//            'user_id' => null
+//        ])
+//            ->assertStatus(422)
+//            ->assertJsonValidationErrors(['user_id' =>
+//                [__('validation.required', ['attribute' => 'user id'])]
+//            ]);
+//    }
 
     /**
      * @test
      */
-    public function validatesUserIdAsInteger()
-    {
-        $this->postJson($this->getRoute(), ['user_id' => 's'])
-            ->assertStatus(422)
-            ->assertJsonValidationErrors(['user_id' =>
-                [__('validation.integer', ['attribute' => 'user id'])]
-            ]);
-    }
+//    public function validatesUserIdAsInteger()
+//    {
+//        $this->postJson($this->getRoute(), ['user_id' => 's'])
+//            ->assertStatus(422)
+//            ->assertJsonValidationErrors(['user_id' =>
+//                [__('validation.integer', ['attribute' => 'user id'])]
+//            ]);
+//    }
 
     /**
      * @test
@@ -36,7 +36,8 @@ trait WorkspaceValidations
     public function validatesNameAsRequired()
     {
         $this->postJson($this->getRoute(), [
-            'name' => null
+            'id' => $this->workspace->id,
+            'name' => null,
         ])
             ->assertStatus(422)
             ->assertJsonValidationErrors(['name' =>
@@ -49,7 +50,10 @@ trait WorkspaceValidations
      */
     public function validatesNameAsString()
     {
-        $this->postJson($this->getRoute(), ['name' => 1])
+        $this->postJson($this->getRoute(), [
+            'id' => $this->workspace->id,
+            'name' => 1,
+            ])
             ->assertStatus(422)
             ->assertJsonValidationErrors(['name' =>
                 [__('validation.string', ['attribute' => 'name'])]
@@ -61,7 +65,10 @@ trait WorkspaceValidations
      */
     public function validatesNameMinLength()
     {
-        $this->postJson($this->getRoute(), ['name' => 'a'])
+        $this->postJson($this->getRoute(), [
+            'id' => $this->workspace->id,
+            'name' => 'a'
+        ])
             ->assertStatus(422)
             ->assertJsonValidationErrors(['name' =>
                 [__('validation.min.string', ['attribute' => 'name', 'min' => 2])]
@@ -73,7 +80,10 @@ trait WorkspaceValidations
      */
     public function validatesNameMaxLength()
     {
-        $this->postJson($this->getRoute(), ['name' => str('a')->padRight(201, 'a')])
+        $this->postJson($this->getRoute(), [
+            'id' => $this->workspace->id,
+            'name' => str('a')->padRight(201, 'a')
+        ])
             ->assertStatus(422)
             ->assertJsonValidationErrors(['name' =>
                 [__('validation.max.string', ['attribute' => 'name', 'max' => 200])]
@@ -85,10 +95,14 @@ trait WorkspaceValidations
      */
     public function validatesDescriptionAsString()
     {
-        $this->postJson($this->getRoute(), ['name' => 1])
+        $this->postJson($this->getRoute(), [
+            'id' => $this->workspace->id,
+            'name' => 1,
+            'description' => 1,
+        ])
             ->assertStatus(422)
-            ->assertJsonValidationErrors(['name' =>
-                [__('validation.string', ['attribute' => 'name'])]
+            ->assertJsonValidationErrors(['description' =>
+                [__('validation.string', ['attribute' => 'description'])]
             ]);
     }
 
@@ -97,7 +111,10 @@ trait WorkspaceValidations
      */
     public function validatesDescriptionMaxLength()
     {
-        $this->postJson($this->getRoute(), ['description' => str('a')->padRight(201, 'a')])
+        $this->postJson($this->getRoute(), [
+            'id' => $this->workspace->id,
+            'description' => str('a')->padRight(201, 'a')
+        ])
             ->assertStatus(422)
             ->assertJsonValidationErrors(['description' =>
                 [__('validation.max.string', ['attribute' => 'description', 'max' => 200])]

@@ -7,6 +7,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Workspace\Entities\WorkspaceEntityModel;
+use Modules\Workspace\Http\Requests\WorkspaceStoreRequest;
+use Modules\Workspace\Http\Requests\WorkspaceUpdateRequest;
 use Modules\Workspace\Models\WorkspaceModel;
 
 class WorkspaceController extends Controller
@@ -14,12 +16,13 @@ class WorkspaceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(WorkspaceStoreRequest $request)
     {
         $request->validate($this->rules());
 
+        $user = auth()->user();
+
         $p = WorkspaceEntityModel::props();
-        $user = User::query()->findOrFail($request->get($p->user_id));
         $parent = WorkspaceModel::query()->findOrFail($request->get($p->parent_id));
         return $p->new()
             ->set($p->user_id, $user->id)
@@ -27,8 +30,6 @@ class WorkspaceController extends Controller
             ->set($p->name, $request->get($p->name))
             ->set($p->description, $request->get($p->description))
             ->save();
-
-
     }
 
     /**
@@ -36,14 +37,10 @@ class WorkspaceController extends Controller
      * @param Request $request
      * @param int $id
      */
-    public function update(Request $request)
+    public function update(WorkspaceUpdateRequest $request)
     {
-        $rules = $this->rules();
-        $rules['id'] = 'int|required';
-        $request->validate($rules);
-
         return ($p = WorkspaceEntityModel::props())->new()
-            ->set($p->user_id, $request->get($p->user_id))
+            ->set($p->user_id, auth()->user()->id)
             ->set($p->parent_id, $request->get($p->parent_id))
             ->set($p->name, $request->get($p->name))
             ->set($p->description, $request->get($p->description))
@@ -67,7 +64,6 @@ class WorkspaceController extends Controller
     protected function rules(): array
     {
         return [
-            'user_id' => 'int|required',
             'parent_id' => 'int',
             'name' => 'string|required|min:2|max:200',
             'description' => 'string|max:200'

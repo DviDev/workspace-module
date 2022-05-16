@@ -2,8 +2,10 @@
 
 namespace Modules\Workspace\Tests\Unit;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Modules\Workspace\Models\WorkspaceModel;
 use Tests\TestCase;
 
 class WorkspaceUpdateFieldValidationTest extends TestCase
@@ -13,38 +15,44 @@ class WorkspaceUpdateFieldValidationTest extends TestCase
 
     use WorkspaceValidations;
 
+    /**
+     * @var WorkspaceModel
+     */
+    protected mixed $workspace;
+    /**
+     * @var User
+     */
+    protected mixed $user;
+
     public function getRoute()
     {
         return route('workspace.update');
     }
 
-    /** @test */
-    public function validatesIdAsRequired()
+    protected function setUp(): void
     {
-        $this->postJson($this->getRoute(), ['id' => null])
-            ->assertStatus(422)
-            ->assertJsonValidationErrors(['id' =>
-                [__('validation.required', ['attribute' => 'id'])]
-            ]);
+        parent::setUp();
+        $this->user = User::factory()->create();
+        $this->actingAs($this->user);
+        $this->workspace = WorkspaceModel::factory()->create();
     }
 
     /** @test */
-    public function validatesIdAsInteger()
+    public function loggedUserShouldBeOwner()
     {
-        $this->postJson($this->getRoute(), ['id' => 'a'])
-            ->assertStatus(422)
-            ->assertJsonValidationErrors(['id' =>
-                [__('validation.integer', ['attribute' => 'id'])]
-            ]);
+        $this->postJson($this->getRoute(), [
+            'id' => $this->workspace->id,
+            'name' => 'bla',
+        ])->assertOk();
     }
 
-    /**
-     * @test
-     */
-    public function update()
+    /** @test */
+    public function loggedUserDontShouldBeOwner()
     {
-        $this->postJson($this->getRoute(), ['id' => null])
-            ->assertStatus(422)
-            ->assertJsonValidationErrors(['id' => __('validation.required', ['attribute' => 'id'])]);
+        $this->actingAs(User::factory()->create());
+        $this->postJson($this->getRoute(), [
+            'id' => $this->workspace->id,
+            'name' => 'blabla',
+        ])->assertStatus(403);
     }
 }
