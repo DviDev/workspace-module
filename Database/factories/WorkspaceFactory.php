@@ -24,7 +24,7 @@ class WorkspaceFactory extends Factory
     {
         $p = WorkspaceEntityModel::props();
         return [
-            $p->user_id => 1,
+            $p->user_id => auth()->user()->id,
             $p->name => $this->faker->words(3, true),
             $p->description => $this->faker->text()
         ];
