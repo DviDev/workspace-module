@@ -25,4 +25,9 @@ class WorkspaceModel extends BaseModel
     {
         return new WorkspaceFactory();
     }
+
+    public static function table($alias = null): string
+    {
+        return parent::dbTable('workspace', $alias);
+    }
 }

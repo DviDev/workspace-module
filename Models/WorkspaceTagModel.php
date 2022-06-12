@@ -16,4 +16,9 @@ class WorkspaceTagModel extends BaseModel
     {
         return WorkspaceTagEntityModel::class;
     }
+
+    public static function table($alias = null): string
+    {
+        return parent::dbTable('workspace_tags', $alias);
+    }
 }

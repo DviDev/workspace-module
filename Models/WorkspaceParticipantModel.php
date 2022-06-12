@@ -16,4 +16,9 @@ class WorkspaceParticipantModel extends BaseModel
     {
         return WorkspaceParticipantEntityModel::class;
     }
+
+    public static function table($alias = null): string
+    {
+        return parent::dbTable('workspace_participants', $alias);
+    }
 }
