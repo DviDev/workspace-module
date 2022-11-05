@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Modules\Workspace\Entities\WorkspaceParticipantEntityModel;
+use Modules\Workspace\Entities\WorkspaceParticipant\WorkspaceParticipantEntityModel;
 
 class CreateWorkspaceParticipants extends Migration
 {
@@ -20,7 +20,7 @@ class CreateWorkspaceParticipants extends Migration
             $prop = WorkspaceParticipantEntityModel::props(null, true);
             $table->bigInteger($prop->workspace_id)->unsigned();
             $table->bigInteger($prop->user_id)->unsigned();
-            $table->timestamp($prop->created_at)->useCurrent();
+            $table->timestamp($prop->created_at);
         });
     }
 

@@ -3,7 +3,7 @@
 namespace Modules\Workspace\Repositories;
 
 use Modules\Base\Repository\BaseRepository;
-use Modules\Workspace\Entities\WorkspaceTagEntityModel;
+use Modules\Workspace\Entities\WorkspaceTag\WorkspaceTagEntityModel;
 use Modules\Workspace\Models\WorkspaceTagModel;
 
 /**

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Modules\Workspace\Entities\WorkspaceEntityModel;
+use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
 
 class CreateWorkspaces extends Migration
 {
@@ -22,7 +22,7 @@ class CreateWorkspaces extends Migration
             $table->bigInteger($prop->parent_id)->unsigned()->nullable();
             $table->string($prop->name, 100);
             $table->string($prop->description, 200)->nullable();
-            $table->timestamp($prop->created_at)->useCurrent();
+            $table->timestamp($prop->created_at);
         });
     }
 
