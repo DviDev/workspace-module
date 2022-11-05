@@ -1,9 +1,9 @@
 <?php
 
-namespace Modules\Workspace\Database\factories;
+namespace Modules\Workspace\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Modules\Workspace\Entities\WorkspaceEntityModel;
+use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
 use Modules\Workspace\Models\WorkspaceModel;
 
 class WorkspaceFactory extends Factory
@@ -30,4 +30,3 @@ class WorkspaceFactory extends Factory
         ];
     }
 }
-

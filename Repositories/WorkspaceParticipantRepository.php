@@ -3,7 +3,7 @@
 namespace Modules\Workspace\Repositories;
 
 use Modules\Base\Repository\BaseRepository;
-use Modules\Workspace\Entities\WorkspaceParticipantEntityModel;
+use Modules\Workspace\Entities\WorkspaceParticipant\WorkspaceParticipantEntityModel;
 use Modules\Workspace\Models\WorkspaceParticipantModel;
 
 /**

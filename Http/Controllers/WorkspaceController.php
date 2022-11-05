@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Workspace\Entities\WorkspaceEntityModel;
+use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
 use Modules\Workspace\Http\Requests\WorkspaceStoreRequest;
 use Modules\Workspace\Http\Requests\WorkspaceUpdateRequest;
 use Modules\Workspace\Models\WorkspaceModel;
