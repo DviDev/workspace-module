@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Modules\Workspace\Entities\WorkspaceEntityModel;
 
 class CreateWorkspaces extends Migration
 {
@@ -16,11 +17,12 @@ class CreateWorkspaces extends Migration
         Schema::create('workspaces', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('user_id');
-            $table->bigInteger('parent_id');
-            $table->string('name', 100);
-            $table->string('description', 200);
-            $table->timestamp('created_at');
+            $prop = WorkspaceEntityModel::props(null, true);
+            $table->bigInteger($prop->user_id)->unsigned();
+            $table->bigInteger($prop->parent_id)->unsigned()->nullable();
+            $table->string($prop->name, 100);
+            $table->string($prop->description, 200)->nullable();
+            $table->timestamp($prop->created_at)->useCurrent();
         });
     }
 

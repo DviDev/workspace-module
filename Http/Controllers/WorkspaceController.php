@@ -2,69 +2,49 @@
 
 namespace Modules\Workspace\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Workspace\Entities\WorkspaceEntityModel;
+use Modules\Workspace\Http\Requests\WorkspaceStoreRequest;
+use Modules\Workspace\Http\Requests\WorkspaceUpdateRequest;
+use Modules\Workspace\Models\WorkspaceModel;
 
 class WorkspaceController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
-    public function index()
-    {
-        return view('workspace::index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('workspace::create');
-    }
-
-    /**
      * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
      */
-    public function store(Request $request)
+    public function store(WorkspaceStoreRequest $request)
     {
-        //
-    }
+        $request->validate($this->rules());
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('workspace::show');
-    }
+        $user = auth()->user();
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('workspace::edit');
+        $p = WorkspaceEntityModel::props();
+        $parent = WorkspaceModel::query()->findOrFail($request->get($p->parent_id));
+        return $p->new()
+            ->set($p->user_id, $user->id)
+            ->set($p->parent_id, $parent->id)
+            ->set($p->name, $request->get($p->name))
+            ->set($p->description, $request->get($p->description))
+            ->save();
     }
 
     /**
      * Update the specified resource in storage.
      * @param Request $request
      * @param int $id
-     * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(WorkspaceUpdateRequest $request)
     {
-        //
+        return ($p = WorkspaceEntityModel::props())->new()
+            ->set($p->user_id, auth()->user()->id)
+            ->set($p->parent_id, $request->get($p->parent_id))
+            ->set($p->name, $request->get($p->name))
+            ->set($p->description, $request->get($p->description))
+            ->save();
     }
 
     /**
@@ -72,8 +52,21 @@ class WorkspaceController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $request->validate([
+            'id' => 'int|required'
+        ]);
+        $model = (WorkspaceModel::query()->findOrFail($request->get('id')));
+        return $model->delete();
+    }
+
+    protected function rules(): array
+    {
+        return [
+            'parent_id' => 'int',
+            'name' => 'string|required|min:2|max:200',
+            'description' => 'string|max:200'
+        ];
     }
 }

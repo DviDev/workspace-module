@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Modules\Workspace\Entities\WorkspaceParticipantEntityModel;
 
 class CreateWorkspaceParticipants extends Migration
 {
@@ -16,9 +17,10 @@ class CreateWorkspaceParticipants extends Migration
         Schema::create('workspace_participants', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('workspace_id');
-            $table->bigInteger('uer_id');
-            $table->timestamp('created_at');
+            $prop = WorkspaceParticipantEntityModel::props(null, true);
+            $table->bigInteger($prop->workspace_id)->unsigned();
+            $table->bigInteger($prop->user_id)->unsigned();
+            $table->timestamp($prop->created_at)->useCurrent();
         });
     }
 
