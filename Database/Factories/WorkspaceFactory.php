@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Workspace\Database\factories;
+namespace Modules\Workspace\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
