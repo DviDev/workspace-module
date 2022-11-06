@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Modules\Workspace\Entities\WorkspaceParticipant\WorkspaceParticipantEntityModel;
 
-class CreateWorkspaceParticipants extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -33,4 +33,4 @@ class CreateWorkspaceParticipants extends Migration
     {
         Schema::dropIfExists('workspace_participants');
     }
-}
+};
