@@ -24,7 +24,8 @@ class WorkspaceFactory extends Factory
     {
         $p = WorkspaceEntityModel::props();
         return [
-            $p->user_id => auth()->user()->id,
+            $p->user_id => null,
+            $p->parent_id => collect([null, WorkspaceModel::query()->inRandomOrder()->first()->id ?? null])->random(),
             $p->name => $this->faker->words(3, true),
             $p->description => $this->faker->text()
         ];

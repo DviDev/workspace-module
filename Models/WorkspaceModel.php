@@ -12,7 +12,7 @@ use Modules\Workspace\Entities\Workspace\WorkspaceProps;
  * @author Davi Menezes (davimenezes.dev@gmail.com)
  * @link https://github.com/DaviMenezes
  * @method WorkspaceEntityModel toEntity()
- * @method WorkspaceFactory factory()
+ * @method static WorkspaceFactory factory()
  */
 class WorkspaceModel extends BaseModel
 {
