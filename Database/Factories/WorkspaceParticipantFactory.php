@@ -27,7 +27,8 @@ class WorkspaceParticipantFactory extends Factory
     {
         $p = WorkspaceParticipantEntityModel::props(null, true);
         return [
-
+            $p->workspace_id => null,
+            $p->user_id => null,
         ];
     }
 }
