@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Modules\Workspace\Entities\WorkspaceTag\WorkspaceTagEntityModel;
+use Modules\Workspace\Models\WorkspaceModel;
 
 return new class extends Migration
 {
@@ -18,10 +20,15 @@ return new class extends Migration
             $table->id();
 
             $props = WorkspaceTagEntityModel::props(null, true);
-            $table->bigInteger($props->workspace_id);
-            $table->bigInteger($props->created_by_user_id);
+            $table->foreignId($props->workspace_id)
+                ->references('id')->on('workspaces')
+                ->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreignId($props->created_by_user_id)
+                ->references('id')->on('users')
+                ->cascadeOnUpdate()->restrictOnDelete();
             $table->string($props->name, 50);
             $table->timestamp($props->created_at)->useCurrent();
+            $table->timestamp($props->updated_at)->useCurrent();
         });
     }
 

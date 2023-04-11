@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Modules\Link\Models\LinkModel;
 use Modules\Workspace\Entities\WorkspaceLink\WorkspaceLinkEntityModel;
+use Modules\Workspace\Models\WorkspaceModel;
 
 return new class extends Migration
 {
@@ -17,8 +19,14 @@ return new class extends Migration
         Schema::create('workspace_links', function (Blueprint $table) {
             $p = WorkspaceLinkEntityModel::props(null, true);
             $table->id();
-            $table->bigInteger($p->workspace_id)->unsigned();
-            $table->bigInteger($p->link_id)->unsigned();
+            $table->foreignId($p->workspace_id)
+                ->references('id')->on('workspaces')
+                ->cascadeOnUpdate()
+                ->restrictOnDelete();
+            $table->foreignId($p->link_id)
+                ->references('id')->on('links')
+                ->cascadeOnUpdate()
+                ->restrictOnDelete();
         });
     }
 

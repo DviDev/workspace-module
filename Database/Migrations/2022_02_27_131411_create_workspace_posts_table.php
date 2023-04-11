@@ -3,7 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Modules\Post\Models\PostModel;
 use Modules\Workspace\Entities\WorkspacePost\WorkspacePostEntityModel;
+use Modules\Workspace\Models\WorkspaceModel;
 
 return new class extends Migration
 {
@@ -17,8 +19,14 @@ return new class extends Migration
         Schema::create('workspace_posts', function (Blueprint $table) {
             $p = WorkspacePostEntityModel::props(null, true);
             $table->id();
-            $table->bigInteger($p->workspace_id)->unsigned();
-            $table->bigInteger($p->post_id)->unsigned();
+            $table->foreignId($p->workspace_id)
+                ->references('id')->on('workspaces')
+                ->cascadeOnUpdate()
+                ->restrictOnDelete();
+            $table->foreignId($p->post_id)
+                ->references('id')->on('posts')
+                ->cascadeOnUpdate()
+                ->restrictOnDelete();
         });
     }
 
