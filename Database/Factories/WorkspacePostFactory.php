@@ -1,15 +1,14 @@
 <?php
 namespace Modules\Workspace\Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Base\Factories\BaseFactory;
 use Modules\Workspace\Models\WorkspacePostModel;
-use Modules\Workspace\Entities\WorkspacePost\WorkspacePostEntityModel;
 
 /**
  * @method WorkspacePostModel create(array $attributes = [])
  * @method WorkspacePostModel make(array $attributes = [])
  */
-class WorkspacePostFactory extends Factory
+class WorkspacePostFactory extends BaseFactory
 {
     /**
      * The name of the factory's corresponding model.
@@ -25,10 +24,6 @@ class WorkspacePostFactory extends Factory
      */
     public function definition(): array
     {
-        $p = WorkspacePostEntityModel::props(null, true);
-        return [
-            $p->workspace_id => null,
-            $p->post_id => null,
-        ];
+        return $this->getValues();
     }
 }

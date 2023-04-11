@@ -2,11 +2,11 @@
 
 namespace Modules\Workspace\Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Base\Factories\BaseFactory;
 use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
 use Modules\Workspace\Models\WorkspaceModel;
 
-class WorkspaceFactory extends Factory
+class WorkspaceFactory extends BaseFactory
 {
     /**
      * The name of the factory's corresponding model.
@@ -23,11 +23,11 @@ class WorkspaceFactory extends Factory
     public function definition()
     {
         $p = WorkspaceEntityModel::props();
-        return [
-            $p->user_id => null,
-            $p->parent_id => collect([null, WorkspaceModel::query()->inRandomOrder()->first()->id ?? null])->random(),
-            $p->name => $this->faker->words(3, true),
-            $p->description => $this->faker->text()
-        ];
+        $values = $this->getValues();
+        $values[$p->parent_id] = collect([
+            null,
+            WorkspaceModel::query()->inRandomOrder()->first()->id ?? null
+        ])->random();
+        return $values;
     }
 }

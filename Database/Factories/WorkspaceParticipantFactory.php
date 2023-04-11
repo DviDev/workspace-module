@@ -1,15 +1,14 @@
 <?php
 namespace Modules\Workspace\Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Modules\Workspace\Entities\WorkspaceParticipant\WorkspaceParticipantEntityModel;
+use Modules\Base\Factories\BaseFactory;
 use Modules\Workspace\Models\WorkspaceParticipantModel;
 
 /**
  * @method WorkspaceParticipantModel create(array $attributes = [])
  * @method WorkspaceParticipantModel make(array $attributes = [])
  */
-class WorkspaceParticipantFactory extends Factory
+class WorkspaceParticipantFactory extends BaseFactory
 {
     /**
      * The name of the factory's corresponding model.
@@ -25,10 +24,6 @@ class WorkspaceParticipantFactory extends Factory
      */
     public function definition(): array
     {
-        $p = WorkspaceParticipantEntityModel::props(null, true);
-        return [
-            $p->workspace_id => null,
-            $p->user_id => null,
-        ];
+        return $this->getValues();
     }
 }

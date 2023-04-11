@@ -1,15 +1,14 @@
 <?php
 namespace Modules\Workspace\Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Base\Factories\BaseFactory;
 use Modules\Workspace\Models\WorkspaceLinkModel;
-use Modules\Workspace\Entities\WorkspaceLink\WorkspaceLinkEntityModel;
 
 /**
  * @method WorkspaceLinkModel create(array $attributes = [])
  * @method WorkspaceLinkModel make(array $attributes = [])
  */
-class WorkspaceLinkFactory extends Factory
+class WorkspaceLinkFactory extends BaseFactory
 {
     /**
      * The name of the factory's corresponding model.
@@ -25,10 +24,8 @@ class WorkspaceLinkFactory extends Factory
      */
     public function definition(): array
     {
-        $p = WorkspaceLinkEntityModel::props(null, true);
-        return [
-            $p->workspace_id => null,
-            $p->link_id => null,
-        ];
+        $r = $this->getValues();
+        ds($r);
+        return $r;
     }
 }

@@ -1,15 +1,14 @@
 <?php
 namespace Modules\Workspace\Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Modules\Workspace\Entities\WorkspaceTag\WorkspaceTagEntityModel;
+use Modules\Base\Factories\BaseFactory;
 use Modules\Workspace\Models\WorkspaceTagModel;
 
 /**
  * @method WorkspaceTagModel create(array $attributes = [])
  * @method WorkspaceTagModel make(array $attributes = [])
  */
-class WorkspaceTagFactory extends Factory
+class WorkspaceTagFactory extends BaseFactory
 {
     /**
      * The name of the factory's corresponding model.
@@ -25,9 +24,6 @@ class WorkspaceTagFactory extends Factory
      */
     public function definition(): array
     {
-        $p = WorkspaceTagEntityModel::props(null, true);
-        return [
-
-        ];
+        return $this->getValues();
     }
 }
