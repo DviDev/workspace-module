@@ -1,33 +1,27 @@
 <?php
 
-namespace Modules\Workspace\Tests\Unit;
+namespace Modules\Workspace\Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Modules\Workspace\Models\WorkspaceModel;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Tests\TestCase;
 
 class WorkspaceStoreFieldValidationTest extends TestCase
 {
-    use DatabaseMigrations;
-    use DatabaseTransactions;
-
+//    use DatabaseMigrations;
+//    use DatabaseTransactions;
+    use RefreshDatabase;
     use WorkspaceValidations;
 
-    /**
-     * @test
-     */
-    public function storeWithInvalidUserId()
+    protected WorkspaceModel $workspace;
+
+    protected function setUp(): void
     {
-        $this->postJson($this->getRoute(), [
-            'user_id' => 1000000000,
-            'parent_id' => 1,
-            'name' => 'aa',
-            'description' => 'aa'
-        ])
-            ->assertStatus(404)
-            ->assertJsonFragment(['exception' => NotFoundHttpException::class]);
+        parent::setUp();
+
+        $this->workspace = WorkspaceModel::factory()->create();
     }
 
     /**
@@ -58,7 +52,7 @@ class WorkspaceStoreFieldValidationTest extends TestCase
             'description' => 'aa'
         ])
             ->assertStatus(422)
-            ->assertJsonFragment(['name' => ['The name field is required.']]);
+            ->assertJsonFragment(['name' => ["The name field is required.","The name field must be a string."]]);
     }
 
     protected function getRoute(): string

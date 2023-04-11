@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Modules\Workspace\Models\WorkspaceModel;
+use Modules\Workspace\Tests\Feature\WorkspaceValidations;
 use Tests\TestCase;
 
 class WorkspaceUpdateFieldValidationTest extends TestCase
@@ -34,7 +35,7 @@ class WorkspaceUpdateFieldValidationTest extends TestCase
         parent::setUp();
         $this->user = User::factory()->create();
         $this->actingAs($this->user);
-        $this->workspace = WorkspaceModel::factory()->create();
+        $this->workspace = WorkspaceModel::factory()->create(['user_id' => $this->user->id]);
     }
 
     /** @test */

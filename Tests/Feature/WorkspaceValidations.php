@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Workspace\Tests\Unit;
+namespace Modules\Workspace\Tests\Feature;
 
 trait WorkspaceValidations
 {
