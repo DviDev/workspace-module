@@ -20,28 +20,13 @@ class WorkspaceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(WorkspaceStoreRequest $request)
-    {
-        $request->validate($this->rules());
-
-        $user = auth()->user();
-
-        $p = WorkspaceEntityModel::props();
-        $parent = WorkspaceModel::query()->findOrFail($request->get($p->parent_id));
-        return $p->new()
-            ->set($p->user_id, $user->id)
-            ->set($p->parent_id, $parent->id)
-            ->set($p->name, $request->get($p->name))
-            ->set($p->description, $request->get($p->description))
-            ->save();
-    }
 
     /**
      * Update the specified resource in storage.
      * @param Request $request
      * @param int $id
      */
-    public function update(WorkspaceUpdateRequest $request, WorkspaceEntityModel $p)
+    public function update(WorkspaceUpdateRequest $request, WorkspaceModel $workspace, WorkspaceEntityModel $p)
     {
         return ($p = $p::props())
             ->new()
