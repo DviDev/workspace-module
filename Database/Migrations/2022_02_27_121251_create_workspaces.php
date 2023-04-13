@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
 
 return new class extends Migration
@@ -26,8 +26,8 @@ return new class extends Migration
                 ->cascadeOnUpdate()->nullOnDelete();
             $table->string($prop->name, 100);
             $table->string($prop->description, 200)->nullable();
-            $table->timestamp($prop->created_at);
-            $table->timestamp($prop->updated_at);
+            $table->timestamp($prop->created_at)->useCurrent();
+            $table->timestamp($prop->updated_at)->useCurrent();
             $table->timestamp($prop->deleted_at)->nullable();
         });
     }

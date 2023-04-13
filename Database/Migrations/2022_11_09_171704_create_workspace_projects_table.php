@@ -15,8 +15,6 @@ return new class extends Migration
      */
     public function up()
     {
-        //Foi decidido que o projeto pode pertencer apenas a 1 workspace
-        return;
         Schema::create('workspace_projects', function (Blueprint $table) {
             $p = WorkspaceProjectEntityModel::props(null, true);
             $table->id();

@@ -24,8 +24,6 @@ class WorkspaceLinkFactory extends BaseFactory
      */
     public function definition(): array
     {
-        $r = $this->getValues();
-        ds($r);
-        return $r;
+        return $this->getValues();
     }
 }

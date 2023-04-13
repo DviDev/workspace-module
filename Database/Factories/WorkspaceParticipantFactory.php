@@ -24,6 +24,6 @@ class WorkspaceParticipantFactory extends BaseFactory
      */
     public function definition(): array
     {
-        return $this->getValues();
+        return [];
     }
 }
