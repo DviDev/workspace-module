@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Modules\Base\Models\BaseModel;
+use Modules\Link\Models\LinkModel;
 use Modules\Workspace\Database\Factories\WorkspaceFactory;
 use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
 use Modules\Workspace\Entities\Workspace\WorkspaceProps;
@@ -16,6 +17,7 @@ use Modules\Workspace\Entities\Workspace\WorkspaceProps;
  * @link https://github.com/DaviMenezes
  * @property-read User $user
  * @property-read User[] $participants
+ * @property-read LinkModel[] $links
  * @method WorkspaceEntityModel toEntity()
  * @method static WorkspaceFactory factory()
  */
@@ -52,5 +54,10 @@ class WorkspaceModel extends BaseModel
             'workspace_id',
             'user_id'
         );
+    }
+
+    public function links(): BelongsToMany
+    {
+        return $this->belongsToMany(LinkModel::class, WorkspaceLinkModel::class, 'link_id', 'workspace_id');
     }
 }
