@@ -1,10 +1,9 @@
 <?php
 namespace Modules\Workspace\Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Base\Factories\BaseFactory;
-use Modules\Workspace\Models\WorkspaceChatModel;
 use Modules\Workspace\Entities\WorkspaceChat\WorkspaceChatEntityModel;
+use Modules\Workspace\Models\WorkspaceChatModel;
 
 /**
  * @method WorkspaceChatModel create(array $attributes = [])

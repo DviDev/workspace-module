@@ -21,11 +21,14 @@ class WorkspaceTableSeeder extends Seeder
     {
         Model::unguard();
 
-        WorkspaceModel::factory()->count(config('app.SEED_WORKSPACE_COUNT'))->for($user, 'user')->create()
+        WorkspaceModel::factory()
+            ->count(config('app.SEED_WORKSPACE_COUNT'))
+            ->for($user, 'user')->create()
             ->each(function (WorkspaceModel $workspace) {
                 User::query()->limit(random_int(1, config('app.SEED_PARTICIPANTS_COUNT')))->where('id', '<>', $workspace->user_id)
                     ->each(function (User $user) use ($workspace) {
                         ds("seeding workspace $workspace->id participant $user->id");
+
                         WorkspaceParticipantModel::factory()
                             ->for($workspace, 'workspace')
                             ->for($user, 'participant')

@@ -15,7 +15,7 @@ use Modules\Workspace\Entities\WorkspaceChat\WorkspaceChatProps;
  * @link https://github.com/DaviMenezes
  * @property-read  WorkspaceModel $workspace
  * @property-read  ChatModel $chat
- * * @method WorkspaceChatEntityModel toEntity()
+ * @method WorkspaceChatEntityModel toEntity()
  * @method static WorkspaceChatFactory factory()
  */
 class WorkspaceChatModel extends BaseModel
