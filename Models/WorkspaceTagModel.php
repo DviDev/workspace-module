@@ -3,6 +3,7 @@
 namespace Modules\Workspace\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\Base\Models\BaseModel;
 use Modules\Workspace\Database\Factories\WorkspaceTagFactory;
 use Modules\Workspace\Entities\WorkspaceTag\WorkspaceTagEntityModel;
@@ -32,5 +33,10 @@ class WorkspaceTagModel extends BaseModel
     public static function table($alias = null): string
     {
         return self::dbTable('workspace_tags', $alias);
+    }
+
+    public function workspace(): BelongsTo
+    {
+        return $this->belongsTo(WorkspaceModel::class, 'workspace_id');
     }
 }

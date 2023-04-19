@@ -16,6 +16,7 @@ use Modules\Project\Models\ProjectModel;
 use Modules\Social\Models\SocialGroupModel;
 use Modules\Social\Models\SocialPageModel;
 use Modules\Task\Models\TaskBoardModel;
+use Modules\Task\Models\TaskModel;
 use Modules\Workspace\Database\Factories\WorkspaceFactory;
 use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
 use Modules\Workspace\Entities\Workspace\WorkspaceProps;

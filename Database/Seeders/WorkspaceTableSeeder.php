@@ -6,9 +6,11 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Post\Models\PostModel;
+use Modules\Workspace\Models\WorkspaceLinkModel;
 use Modules\Workspace\Models\WorkspaceModel;
 use Modules\Workspace\Models\WorkspaceParticipantModel;
 use Modules\Workspace\Models\WorkspacePostModel;
+use Modules\Workspace\Models\WorkspaceTagModel;
 
 class WorkspaceTableSeeder extends Seeder
 {
@@ -33,6 +35,7 @@ class WorkspaceTableSeeder extends Seeder
                             ->for($workspace, 'workspace')
                             ->for($user, 'participant')
                             ->create();
+
                     });
             });
 
