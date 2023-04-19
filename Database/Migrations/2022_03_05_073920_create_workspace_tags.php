@@ -1,11 +1,9 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Modules\Workspace\Entities\WorkspaceTag\WorkspaceTagEntityModel;
-use Modules\Workspace\Models\WorkspaceModel;
 
 return new class extends Migration
 {

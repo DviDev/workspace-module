@@ -17,9 +17,11 @@ return new class extends Migration
         Schema::create('workspace_chats', function (Blueprint $table) {
             $p = WorkspaceChatEntityModel::props(null, true);
             $table->id();
-            $table->foreignId($p->workspace_id)->references('id')->on('workspaces')
+            $table->foreignId($p->workspace_id)
+                ->references('id')->on('workspaces')
                 ->cascadeOnUpdate()->restrictOnDelete();
-            $table->foreignId($p->chat_id)->references('id')->on('chats')
+            $table->foreignId($p->chat_id)
+                ->references('id')->on('chats')
                 ->cascadeOnUpdate()->restrictOnDelete();
 
             $table->timestamp($p->created_at);

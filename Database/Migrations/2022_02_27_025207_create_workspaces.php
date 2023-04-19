@@ -18,7 +18,8 @@ return new class extends Migration
             $table->id();
 
             $prop = WorkspaceEntityModel::props(null, true);
-            $table->foreignId($prop->user_id)->references('id')->on('users')
+            $table->foreignId($prop->user_id)
+                ->references('id')->on('users')
                 ->cascadeOnUpdate()->restrictOnDelete();
             $table->foreignId($prop->parent_id)
                 ->nullable()

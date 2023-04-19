@@ -3,9 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Modules\Post\Models\PostModel;
 use Modules\Workspace\Entities\WorkspacePost\WorkspacePostEntityModel;
-use Modules\Workspace\Models\WorkspaceModel;
 
 return new class extends Migration
 {

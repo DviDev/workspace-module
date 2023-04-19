@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use Modules\Workspace\Entities\WorkspaceProject\WorkspaceProjectEntityModel;
-use Modules\Workspace\Models\WorkspaceModel;
 
 return new class extends Migration
 {
@@ -18,8 +17,12 @@ return new class extends Migration
         Schema::create('workspace_projects', function (Blueprint $table) {
             $p = WorkspaceProjectEntityModel::props(null, true);
             $table->id();
-            $table->bigInteger($p->workspace_id)->unsigned();
-            $table->bigInteger($p->project_id)->unsigned();
+            $table->foreignId($p->workspace_id)
+                ->references('id')->on('workspaces')
+                ->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreignId($p->project_id)
+                ->references('id')->on('projects')
+                ->cascadeOnUpdate()->restrictOnDelete();
         });
     }
 
