@@ -67,7 +67,7 @@ class WorkspaceModel extends BaseModel
 
     public function links(): BelongsToMany
     {
-        return $this->belongsToMany(LinkModel::class, WorkspaceLinkModel::class, 'link_id', 'workspace_id');
+        return $this->belongsToMany(LinkModel::class, WorkspaceLinkModel::class, 'workspace_id', 'link_id');
     }
 
     public function chats(): BelongsToMany
@@ -77,12 +77,12 @@ class WorkspaceModel extends BaseModel
 
     public function posts(): BelongsToMany
     {
-        return $this->belongsToMany(PostModel::class, WorkspacePostModel::class, 'post_id', 'workspace_id');
+        return $this->belongsToMany(PostModel::class, WorkspacePostModel::class, 'workspace_id', 'post_id');
     }
 
     public function projects(): BelongsToMany
     {
-        return $this->belongsToMany(ProjectModel::class, WorkspaceProjectModel::class, 'project_id', 'workspace_id');
+        return $this->belongsToMany(ProjectModel::class, WorkspaceProjectModel::class, 'workspace_id', 'project_id');
     }
 
     public function tags(): HasMany
