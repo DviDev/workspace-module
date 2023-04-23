@@ -1,3 +1,3 @@
-<div>
+<x-app-layout>
     <livewire:workspace.workspace-post-table :workspace="$workspace"/>
-</div>
+</x-app-layout>
