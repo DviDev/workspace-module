@@ -11,6 +11,7 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
 use Modules\Workspace\Models\WorkspaceModel;
 
 Route::prefix('workspace')->group(function () {
