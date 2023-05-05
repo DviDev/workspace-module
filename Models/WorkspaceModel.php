@@ -35,6 +35,8 @@ class WorkspaceModel extends BaseModel
     use HasFactory;
     use WorkspaceProps;
 
+    protected $with = ['user'];
+
     public function modelEntity(): string
     {
         return WorkspaceEntityModel::class;
