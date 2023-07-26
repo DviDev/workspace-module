@@ -19,23 +19,24 @@ class WorkspaceTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run(User $user)
+    public function run(User $user, string $name)
     {
         Model::unguard();
 
         WorkspaceModel::factory()
-            ->count(config('app.SEED_WORKSPACE_COUNT'))
-            ->for($user, 'user')->create()
+            ->for($user, 'user')
+            ->create(['name' => $name])
             ->each(function (WorkspaceModel $workspace) {
-                User::query()->limit(random_int(1, config('app.SEED_PARTICIPANTS_COUNT')))->where('id', '<>', $workspace->user_id)
+                $workspace->participants()->attach($workspace->user_id);
+
+                User::query()->limit(random_int(1, config('app.SEED_PARTICIPANTS_COUNT', 2)))->where('id', '<>', $workspace->user_id)
                     ->each(function (User $user) use ($workspace) {
                         ds("seeding workspace $workspace->id participant $user->id");
 
                         WorkspaceParticipantModel::factory()
-                            ->for($workspace, 'workspace')
-                            ->for($user, 'participant')
+                            ->for($workspace)
+                            ->for($user)
                             ->create();
-
                     });
             });
 

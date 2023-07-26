@@ -14,7 +14,7 @@ use Modules\Workspace\Entities\WorkspaceParticipant\WorkspaceParticipantProps;
  * @author Davi Menezes (davimenezes.dev@gmail.com)
  * @link https://github.com/DaviMenezes
  * @property-read WorkspaceModel $workspace
- * @property-read User $participant
+ * @property-read User $user
  * @method WorkspaceParticipantEntityModel toEntity()
  * @method static WorkspaceParticipantFactory factory()
  */
@@ -43,7 +43,7 @@ class WorkspaceParticipantModel extends BaseModel
         return $this->belongsTo(WorkspaceModel::class, 'workspace_id');
     }
 
-    public function participant(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }

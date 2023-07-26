@@ -27,7 +27,7 @@ return new class extends Migration
             $table->foreignId($prop->user_id)
                 ->references('id')->on('users')
                 ->cascadeOnUpdate()->restrictOnDelete();
-            $table->timestamp($prop->created_at);
+            $table->timestamp($prop->created_at)->useCurrent();
             $table->timestamp($prop->deleted_at)->nullable();
         });
     }
