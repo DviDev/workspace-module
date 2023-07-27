@@ -21,10 +21,11 @@ return new class extends Migration
                 ->references('id')->on('workspaces')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
-            $table->foreignId($p->post_id)
-                ->references('id')->on('posts')
-                ->cascadeOnUpdate()
-                ->restrictOnDelete();
+            $table->unsignedBigInteger($p->post_id);
+            if (collect(Module::allEnabled())->contains('Post')) {
+                $table->foreign($p->post_id)->references('id')->on('posts')
+                    ->cascadeOnUpdate()->restrictOnDelete();
+            }
         });
     }
 

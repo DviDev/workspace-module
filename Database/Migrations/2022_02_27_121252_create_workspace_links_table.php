@@ -19,14 +19,18 @@ return new class extends Migration
         Schema::create('workspace_links', function (Blueprint $table) {
             $p = WorkspaceLinkEntityModel::props(null, true);
             $table->id();
-            $table->foreignId($p->workspace_id)
-                ->references('id')->on('workspaces')
-                ->cascadeOnUpdate()
-                ->restrictOnDelete();
-            $table->foreignId($p->link_id)
-                ->references('id')->on('links')
-                ->cascadeOnUpdate()
-                ->restrictOnDelete();
+            $table->unsignedBigInteger($p->workspace_id);
+                $table->foreign($p->workspace_id)->references('id')->on('workspaces')
+                    ->cascadeOnUpdate()
+                    ->restrictOnDelete();
+
+            $table->unsignedBigInteger($p->link_id);
+            if (collect(Module::allEnabled())->contains('Link')) {
+                $table->foreignId($p->link_id)
+                    ->references('id')->on('links')
+                    ->cascadeOnUpdate()
+                    ->restrictOnDelete();
+            }
         });
     }
 
