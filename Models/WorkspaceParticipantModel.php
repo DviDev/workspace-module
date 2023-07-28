@@ -16,7 +16,6 @@ use Modules\Workspace\Entities\WorkspaceParticipant\WorkspaceParticipantProps;
  * @property-read WorkspaceModel $workspace
  * @property-read User $user
  * @method WorkspaceParticipantEntityModel toEntity()
- * @method static WorkspaceParticipantFactory factory()
  */
 class WorkspaceParticipantModel extends BaseModel
 {

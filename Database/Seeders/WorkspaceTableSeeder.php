@@ -3,14 +3,11 @@
 namespace Modules\Workspace\Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use Modules\Post\Models\PostModel;
-use Modules\Workspace\Models\WorkspaceLinkModel;
+use Illuminate\Database\Seeder;
+use Modules\App\Entities\User\UserType;
 use Modules\Workspace\Models\WorkspaceModel;
 use Modules\Workspace\Models\WorkspaceParticipantModel;
-use Modules\Workspace\Models\WorkspacePostModel;
-use Modules\Workspace\Models\WorkspaceTagModel;
 
 class WorkspaceTableSeeder extends Seeder
 {
@@ -19,26 +16,26 @@ class WorkspaceTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run(User $user, string $name)
+    public function run()
     {
         Model::unguard();
 
-        WorkspaceModel::factory()
-            ->for($user, 'user')
-            ->create(['name' => $name])
-            ->each(function (WorkspaceModel $workspace) {
-                $workspace->participants()->attach($workspace->user_id);
+        $superAdmin = User::query()->where('type', UserType::SUPER_ADMIN->value)->get()->first();
 
-                User::query()->limit(random_int(1, config('app.SEED_PARTICIPANTS_COUNT', 2)))->where('id', '<>', $workspace->user_id)
-                    ->each(function (User $user) use ($workspace) {
-                        ds("seeding workspace $workspace->id participant $user->id");
+        WorkspaceModel::factory(2)
+            ->for($superAdmin)
 
-                        WorkspaceParticipantModel::factory()
-                            ->for($workspace)
-                            ->for($user)
-                            ->create();
-                    });
-            });
+            ->sequence(
+                ['name' => 'Personal'],
+                ['name' => 'Customers']
+            )
+            ->afterCreating(function ($workspace) {
+                WorkspaceParticipantModel::factory(config('app.SEED_PARTICIPANTS_COUNT', 2))
+                    ->for($workspace)
+                    ->for(User::factory()->create())
+                    ->create();
+            })
+            ->create();
 
     }
 }

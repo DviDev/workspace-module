@@ -28,7 +28,6 @@ use Modules\Workspace\Entities\Workspace\WorkspaceProps;
  * @property-read User[]|Collection $participants
  * @property-read LinkModel[] $links
  * @method WorkspaceEntityModel toEntity()
- * @method static WorkspaceFactory factory()
  */
 class WorkspaceModel extends BaseModel
 {

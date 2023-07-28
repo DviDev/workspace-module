@@ -26,7 +26,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger($p->link_id);
             if (collect(Module::allEnabled())->contains('Link')) {
-                $table->foreignId($p->link_id)
+                $table->foreign($p->link_id)
                     ->references('id')->on('links')
                     ->cascadeOnUpdate()
                     ->restrictOnDelete();
