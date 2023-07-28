@@ -30,16 +30,13 @@ class WorkspaceTableSeeder extends Seeder
                 ['name' => 'Personal'],
                 ['name' => 'Customers']
             )
-            ->afterCreating(function ($workspace) {
+            ->afterCreating(function (WorkspaceModel $workspace) {
                 WorkspaceProjectModel::factory()
                     ->for($workspace)
                     ->for(ProjectModel::first())
                     ->create();
 
-                WorkspaceParticipantModel::factory(config('app.SEED_PARTICIPANTS_COUNT', 2))
-                    ->for($workspace)
-                    ->for(User::factory()->create())
-                    ->create();
+                $workspace->participants()->attach([$workspace->user_id, ...User::factory(2)->create()->modelKeys()]);
             })
             ->create();
 
