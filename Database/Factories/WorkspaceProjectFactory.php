@@ -2,6 +2,7 @@
 namespace Modules\Workspace\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Base\Factories\BaseFactory;
 use Modules\Workspace\Models\WorkspaceProjectModel;
 use Modules\Workspace\Entities\WorkspaceProject\WorkspaceProjectEntityModel;
 
@@ -9,7 +10,7 @@ use Modules\Workspace\Entities\WorkspaceProject\WorkspaceProjectEntityModel;
  * @method WorkspaceProjectModel create(array $attributes = [])
  * @method WorkspaceProjectModel make(array $attributes = [])
  */
-class WorkspaceProjectFactory extends Factory
+class WorkspaceProjectFactory extends BaseFactory
 {
     /**
      * The name of the factory's corresponding model.

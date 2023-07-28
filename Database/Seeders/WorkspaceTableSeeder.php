@@ -6,8 +6,10 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Modules\App\Entities\User\UserType;
+use Modules\Project\Models\ProjectModel;
 use Modules\Workspace\Models\WorkspaceModel;
 use Modules\Workspace\Models\WorkspaceParticipantModel;
+use Modules\Workspace\Models\WorkspaceProjectModel;
 
 class WorkspaceTableSeeder extends Seeder
 {
@@ -24,12 +26,16 @@ class WorkspaceTableSeeder extends Seeder
 
         WorkspaceModel::factory(2)
             ->for($superAdmin)
-
             ->sequence(
                 ['name' => 'Personal'],
                 ['name' => 'Customers']
             )
             ->afterCreating(function ($workspace) {
+                WorkspaceProjectModel::factory()
+                    ->for($workspace)
+                    ->for(ProjectModel::first())
+                    ->create();
+
                 WorkspaceParticipantModel::factory(config('app.SEED_PARTICIPANTS_COUNT', 2))
                     ->for($workspace)
                     ->for(User::factory()->create())

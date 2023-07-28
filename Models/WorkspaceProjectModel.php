@@ -14,7 +14,7 @@ use Modules\Workspace\Entities\WorkspaceProject\WorkspaceProjectProps;
  * @author Davi Menezes (davimenezes.dev@gmail.com)
  * @link https://github.com/DaviMenezes
  * @method WorkspaceProjectEntityModel toEntity()
- * @method static WorkspaceProjectFactory factory()
+ * @method static WorkspaceProjectFactory factory($count = null, $state = [])
  */
 class WorkspaceProjectModel extends BaseModel
 {

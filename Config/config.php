@@ -1,5 +1,12 @@
 <?php
 
 return [
-    'name' => 'Workspace'
+    'name' => 'Workspace',
+    'SEED_WORKSPACE_CHATS_COUNT' => 3,
+    'SEED_WORKSPACE_LINKS_COUNT' => 3,
+    'SEED_WORKSPACE_PARTICIPANTS_COUNT' => 3,
+    'SEED_WORKSPACE_POSTS_COUNT' => 3,
+    'SEED_WORKSPACE_PROJECTS_COUNT' => 3,
+    'SEED_WORKSPACE_TAGS_COUNT' => 3,
+    'SEED_WORKSPACES_COUNT' => 3,
 ];
