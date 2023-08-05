@@ -4,9 +4,9 @@ namespace Modules\Workspace\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\Base\Factories\BaseFactory;
 use Modules\Base\Models\BaseModel;
 use Modules\Chat\Models\ChatModel;
-use Modules\Workspace\Database\Factories\WorkspaceChatFactory;
 use Modules\Workspace\Entities\WorkspaceChat\WorkspaceChatEntityModel;
 use Modules\Workspace\Entities\WorkspaceChat\WorkspaceChatProps;
 
@@ -16,7 +16,6 @@ use Modules\Workspace\Entities\WorkspaceChat\WorkspaceChatProps;
  * @property-read  WorkspaceModel $workspace
  * @property-read  ChatModel $chat
  * @method WorkspaceChatEntityModel toEntity()
- * @method static WorkspaceChatFactory factory()
  */
 class WorkspaceChatModel extends BaseModel
 {
@@ -28,11 +27,12 @@ class WorkspaceChatModel extends BaseModel
         return WorkspaceChatEntityModel::class;
     }
 
-    protected static function newFactory(): WorkspaceChatFactory
+    protected static function newFactory(): BaseFactory
     {
-        return new WorkspaceChatFactory();
+        return new class extends BaseFactory {
+            protected $model = WorkspaceChatModel::class;
+        };
     }
-
     public static function table($alias = null): string
     {
         return self::dbTable('workspace_chats', $alias);

@@ -4,8 +4,8 @@ namespace Modules\Workspace\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\Base\Factories\BaseFactory;
 use Modules\Base\Models\BaseModel;
-use Modules\Workspace\Database\Factories\WorkspaceTagFactory;
 use Modules\Workspace\Entities\WorkspaceTag\WorkspaceTagEntityModel;
 use Modules\Workspace\Entities\WorkspaceTag\WorkspaceTagProps;
 
@@ -13,7 +13,6 @@ use Modules\Workspace\Entities\WorkspaceTag\WorkspaceTagProps;
  * @author Davi Menezes (davimenezes.dev@gmail.com)
  * @link https://github.com/DaviMenezes
  * @method WorkspaceTagEntityModel toEntity()
- * @method WorkspaceTagFactory factory()
  */
 class WorkspaceTagModel extends BaseModel
 {
@@ -25,9 +24,11 @@ class WorkspaceTagModel extends BaseModel
         return WorkspaceTagEntityModel::class;
     }
 
-    protected static function newFactory(): WorkspaceTagFactory
+    protected static function newFactory(): BaseFactory
     {
-        return new WorkspaceTagFactory();
+        return new class extends BaseFactory {
+            protected $model = WorkspaceTagModel::class;
+        };
     }
 
     public static function table($alias = null): string

@@ -4,9 +4,9 @@ namespace Modules\Workspace\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\Base\Factories\BaseFactory;
 use Modules\Base\Models\BaseModel;
 use Modules\Post\Models\PostModel;
-use Modules\Workspace\Database\Factories\WorkspacePostFactory;
 use Modules\Workspace\Entities\WorkspacePost\WorkspacePostEntityModel;
 use Modules\Workspace\Entities\WorkspacePost\WorkspacePostProps;
 
@@ -16,7 +16,6 @@ use Modules\Workspace\Entities\WorkspacePost\WorkspacePostProps;
  * @property-read WorkspaceModel $workspace
  * @property-read PostModel $post
  * @method WorkspacePostEntityModel toEntity()
- * @method static WorkspacePostFactory factory()
  */
 class WorkspacePostModel extends BaseModel
 {
@@ -28,9 +27,11 @@ class WorkspacePostModel extends BaseModel
         return WorkspacePostEntityModel::class;
     }
 
-    protected static function newFactory(): WorkspacePostFactory
+    protected static function newFactory(): BaseFactory
     {
-        return new WorkspacePostFactory();
+        return new class extends BaseFactory {
+            protected $model = WorkspacePostModel::class;
+        };
     }
 
     public static function table($alias = null): string

@@ -4,9 +4,9 @@ namespace Modules\Workspace\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\Base\Factories\BaseFactory;
 use Modules\Base\Models\BaseModel;
 use Modules\Link\Models\LinkModel;
-use Modules\Workspace\Database\Factories\WorkspaceLinkFactory;
 use Modules\Workspace\Entities\WorkspaceLink\WorkspaceLinkEntityModel;
 use Modules\Workspace\Entities\WorkspaceLink\WorkspaceLinkProps;
 
@@ -16,7 +16,6 @@ use Modules\Workspace\Entities\WorkspaceLink\WorkspaceLinkProps;
  * @property-read WorkspaceModel $workspace
  * @property-read LinkModel $link
  * @method WorkspaceLinkEntityModel toEntity()
- * @method static WorkspaceLinkFactory factory()
  */
 class WorkspaceLinkModel extends BaseModel
 {
@@ -28,9 +27,11 @@ class WorkspaceLinkModel extends BaseModel
         return WorkspaceLinkEntityModel::class;
     }
 
-    protected static function newFactory(): WorkspaceLinkFactory
+    protected static function newFactory(): BaseFactory
     {
-        return new WorkspaceLinkFactory();
+        return new class extends BaseFactory {
+            protected $model = WorkspaceLinkModel::class;
+        };
     }
 
     public static function table($alias = null): string

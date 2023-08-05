@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
+use Modules\Base\Factories\BaseFactory;
 use Modules\Base\Models\BaseModel;
 use Modules\Chat\Models\ChatModel;
 use Modules\Link\Models\LinkModel;
@@ -16,8 +17,6 @@ use Modules\Project\Models\ProjectModel;
 use Modules\Social\Models\SocialGroupModel;
 use Modules\Social\Models\SocialPageModel;
 use Modules\Task\Models\TaskBoardModel;
-use Modules\Task\Models\TaskModel;
-use Modules\Workspace\Database\Factories\WorkspaceFactory;
 use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
 use Modules\Workspace\Entities\Workspace\WorkspaceProps;
 
@@ -41,9 +40,11 @@ class WorkspaceModel extends BaseModel
         return WorkspaceEntityModel::class;
     }
 
-    protected static function newFactory(): WorkspaceFactory
+    protected static function newFactory(): BaseFactory
     {
-        return new WorkspaceFactory();
+        return new class extends BaseFactory {
+            protected $model = WorkspaceModel::class;
+        };
     }
 
     public static function table($alias = null): string

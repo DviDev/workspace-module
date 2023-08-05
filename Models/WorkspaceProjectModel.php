@@ -4,9 +4,9 @@ namespace Modules\Workspace\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\Base\Factories\BaseFactory;
 use Modules\Base\Models\BaseModel;
 use Modules\Project\Models\ProjectModel;
-use Modules\Workspace\Database\Factories\WorkspaceProjectFactory;
 use Modules\Workspace\Entities\WorkspaceProject\WorkspaceProjectEntityModel;
 use Modules\Workspace\Entities\WorkspaceProject\WorkspaceProjectProps;
 
@@ -14,7 +14,6 @@ use Modules\Workspace\Entities\WorkspaceProject\WorkspaceProjectProps;
  * @author Davi Menezes (davimenezes.dev@gmail.com)
  * @link https://github.com/DaviMenezes
  * @method WorkspaceProjectEntityModel toEntity()
- * @method static WorkspaceProjectFactory factory($count = null, $state = [])
  */
 class WorkspaceProjectModel extends BaseModel
 {
@@ -26,9 +25,11 @@ class WorkspaceProjectModel extends BaseModel
         return WorkspaceProjectEntityModel::class;
     }
 
-    protected static function newFactory(): WorkspaceProjectFactory
+    protected static function newFactory(): BaseFactory
     {
-        return new WorkspaceProjectFactory();
+        return new class extends BaseFactory {
+            protected $model = WorkspaceProjectModel::class;
+        };
     }
 
     public static function table($alias = null): string
