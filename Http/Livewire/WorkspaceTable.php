@@ -235,7 +235,7 @@ final class WorkspaceTable extends PowerGridComponent
     {
         try {
             $workspace->delete();
-            $this->emitSelf('refresh');
+            $this->dispatch('refresh')->self();
         } catch (\Exception $exception) {
             if ($exception->getCode() == '23000') {
                 throw new \Exception('Não é possível excluir workspaces');
