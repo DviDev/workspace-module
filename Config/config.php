@@ -1,5 +1,12 @@
 <?php
 
 return [
-    'name' => 'Workspace'
+    'name' => 'Workspace',
+    'SEED_WORKSPACE_CHATS_COUNT' => env('SEEDER_DEFAULT_', 3),
+    'SEED_WORKSPACE_LINKS_COUNT' => env('SEEDER_DEFAULT_', 3),
+    'SEED_WORKSPACE_PARTICIPANTS_COUNT' => env('SEEDER_DEFAULT_', 3),
+    'SEED_WORKSPACE_POSTS_COUNT' => env('SEEDER_DEFAULT_', 3),
+    'SEED_WORKSPACE_PROJECTS_COUNT' => env('SEEDER_DEFAULT_', 3),
+    'SEED_WORKSPACE_TAGS_COUNT' => env('SEEDER_DEFAULT_', 3),
+    'SEED_WORKSPACES_COUNT' => env('SEEDER_DEFAULT_', 3),
 ];

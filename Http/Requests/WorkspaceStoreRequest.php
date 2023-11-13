@@ -3,30 +3,26 @@
 namespace Modules\Workspace\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
+use Modules\Workspace\Models\WorkspaceModel;
 
 class WorkspaceStoreRequest extends FormRequest
 {
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
+    public function rules(): array
     {
+        $p = WorkspaceEntityModel::props('workspace', true);
         return [
-            'parent_id' => 'int',
-            'name' => 'string|required|min:2|max:200',
-            'description' => 'string|max:200'
+            $p->parent_id => ['nullable', 'exists:'.WorkspaceModel::table().',id'],
+            $p->name => ['string','required','min:2','max:100'],
+            $p->description => 'max:200'
         ];
     }
 
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
+    public function authorize(): bool
     {
-        return true;
+        if (auth()->user()) {
+            return true;
+        }
+        return false;
     }
 }

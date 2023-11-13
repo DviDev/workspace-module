@@ -2,8 +2,10 @@
 
 namespace Modules\Workspace\Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Workspace\Models\WorkspaceModel;
 
 class WorkspaceDatabaseSeeder extends Seeder
 {
@@ -16,6 +18,6 @@ class WorkspaceDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+
     }
 }

@@ -4,6 +4,19 @@ namespace Modules\Workspace\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Modules\Workspace\Http\Livewire\Form\WorkspaceForm;
+use Modules\Workspace\Http\Livewire\Pages\WorkspaceChatPage;
+use Modules\Workspace\Http\Livewire\Pages\WorkspaceLinkPage;
+use Modules\Workspace\Http\Livewire\Pages\WorkspaceParticipantPage;
+use Modules\Workspace\Http\Livewire\Pages\WorkspacePostPage;
+use Modules\Workspace\Http\Livewire\Pages\WorkspacesPage;
+use Modules\Workspace\Http\Livewire\WorkspaceChatTable;
+use Modules\Workspace\Http\Livewire\WorkspaceLinkTable;
+use Modules\Workspace\Http\Livewire\WorkspaceParticipantTable;
+use Modules\Workspace\Http\Livewire\WorkspacePostTable;
+use Modules\Workspace\Http\Livewire\WorkspaceProjectTable;
+use Modules\Workspace\Http\Livewire\WorkspaceTable;
+use Modules\Workspace\Http\Livewire\WorkspaceTagTable;
 
 class WorkspaceServiceProvider extends ServiceProvider
 {
@@ -37,6 +50,20 @@ class WorkspaceServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        \Livewire::component('workspace::form', WorkspaceForm::class);
+        \Livewire::component('workspace::page.chat', WorkspaceChatPage::class);
+        \Livewire::component('workspace::page.link', WorkspaceLinkPage::class);
+        \Livewire::component('workspace::page.participant', WorkspaceParticipantPage::class);
+        \Livewire::component('workspace::page.post', WorkspacePostPage::class);
+        \Livewire::component('workspace::page.list', WorkspacesPage::class);
+        \Livewire::component('workspace::chat-table', WorkspaceChatTable::class);
+        \Livewire::component('workspace::link-table', WorkspaceLinkTable::class);
+        \Livewire::component('workspace::participant-table', WorkspaceParticipantTable::class);
+        \Livewire::component('workspace::post-table', WorkspacePostTable::class);
+        \Livewire::component('workspace::project-table', WorkspaceProjectTable::class);
+        \Livewire::component('workspace::table', WorkspaceTable::class);
+        \Livewire::component('workspace::tag-table', WorkspaceTagTable::class);
+
         $this->app->register(RouteServiceProvider::class);
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Workspace\Tests\Unit;
+namespace Modules\Workspace\Tests\Feature;
 
 trait WorkspaceValidations
 {
@@ -33,7 +33,7 @@ trait WorkspaceValidations
     /**
      * @test
      */
-    public function validatesNameAsRequired()
+    public function validatesNameAsRequired(): void
     {
         $this->postJson($this->getRoute(), [
             'id' => $this->workspace->id,
@@ -48,7 +48,7 @@ trait WorkspaceValidations
     /**
      * @test
      */
-    public function validatesNameAsString()
+    public function validatesNameAsString(): void
     {
         $this->postJson($this->getRoute(), [
             'id' => $this->workspace->id,
@@ -63,7 +63,7 @@ trait WorkspaceValidations
     /**
      * @test
      */
-    public function validatesNameMinLength()
+    public function validatesNameMinLength(): void
     {
         $this->postJson($this->getRoute(), [
             'id' => $this->workspace->id,
@@ -78,7 +78,7 @@ trait WorkspaceValidations
     /**
      * @test
      */
-    public function validatesNameMaxLength()
+    public function validatesNameMaxLength(): void
     {
         $this->postJson($this->getRoute(), [
             'id' => $this->workspace->id,
@@ -93,7 +93,7 @@ trait WorkspaceValidations
     /**
      * @test
      */
-    public function validatesDescriptionAsString()
+    public function validatesDescriptionAsString(): void
     {
         $this->postJson($this->getRoute(), [
             'id' => $this->workspace->id,
@@ -109,7 +109,7 @@ trait WorkspaceValidations
     /**
      * @test
      */
-    public function validatesDescriptionMaxLength()
+    public function validatesDescriptionMaxLength(): void
     {
         $this->postJson($this->getRoute(), [
             'id' => $this->workspace->id,

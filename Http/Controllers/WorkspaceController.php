@@ -13,33 +13,23 @@ use Modules\Workspace\Models\WorkspaceModel;
 
 class WorkspaceController extends Controller
 {
+    public function show(WorkspaceModel $workspace)
+    {
+        return $workspace;
+    }
     /**
      * Store a newly created resource in storage.
      */
-    public function store(WorkspaceStoreRequest $request)
-    {
-        $request->validate($this->rules());
-
-        $user = auth()->user();
-
-        $p = WorkspaceEntityModel::props();
-        $parent = WorkspaceModel::query()->findOrFail($request->get($p->parent_id));
-        return $p->new()
-            ->set($p->user_id, $user->id)
-            ->set($p->parent_id, $parent->id)
-            ->set($p->name, $request->get($p->name))
-            ->set($p->description, $request->get($p->description))
-            ->save();
-    }
 
     /**
      * Update the specified resource in storage.
      * @param Request $request
      * @param int $id
      */
-    public function update(WorkspaceUpdateRequest $request)
+    public function update(WorkspaceUpdateRequest $request, WorkspaceModel $workspace, WorkspaceEntityModel $p)
     {
-        return ($p = WorkspaceEntityModel::props())->new()
+        return ($p = $p::props())
+            ->new()
             ->set($p->user_id, auth()->user()->id)
             ->set($p->parent_id, $request->get($p->parent_id))
             ->set($p->name, $request->get($p->name))

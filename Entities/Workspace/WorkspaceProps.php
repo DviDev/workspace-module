@@ -9,6 +9,8 @@ namespace Modules\Workspace\Entities\Workspace;
  * @property $name
  * @property $description
  * @property $created_at
+ * @property $updated_at
+ * @property $deleted_at
  */
 trait WorkspaceProps
 {

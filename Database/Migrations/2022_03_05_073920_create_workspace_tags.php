@@ -18,10 +18,15 @@ return new class extends Migration
             $table->id();
 
             $props = WorkspaceTagEntityModel::props(null, true);
-            $table->bigInteger($props->workspace_id);
-            $table->bigInteger($props->created_by_user_id);
+            $table->foreignId($props->workspace_id)
+                ->references('id')->on('workspaces')
+                ->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreignId($props->created_by_user_id)
+                ->references('id')->on('users')
+                ->cascadeOnUpdate()->restrictOnDelete();
             $table->string($props->name, 50);
-            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp($props->created_at)->useCurrent();
+            $table->timestamp($props->updated_at)->useCurrent();
         });
     }
 

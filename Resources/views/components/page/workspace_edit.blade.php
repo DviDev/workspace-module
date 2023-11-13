@@ -1,0 +1,3 @@
+<x-app-layout>
+    editing ...
+</x-app-layout>
