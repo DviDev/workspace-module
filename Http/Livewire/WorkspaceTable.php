@@ -180,7 +180,7 @@ final class WorkspaceTable extends PowerGridComponent
                 ->render(function (WorkspaceModel $workspace) {
                     return Blade::render(<<<HTML
                       <div class="flex">
-                          <a href="{{ route('admin.workspace.edit', $workspace->id) }}" class="bg-indigo-500
+                          <a href="{{ route('workspace.form', $workspace->id) }}" class="bg-indigo-500
                             cursor-pointer
                             text-white px-2 py-2 mr-1 rounded rounded-full text-sm">
                             <x-dvui::icon.pencil/>
