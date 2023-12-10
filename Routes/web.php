@@ -16,7 +16,7 @@ use Modules\Workspace\Models\WorkspaceModel;
 
 Route::middleware(['auth', 'verified'])->prefix('workspace')->group(function () {
     Route::view('/workspace/list', 'workspace::components.page.workspaces')->name('admin.workspaces');
-    Route::get('/{workspace}/edit', fn(WorkspaceModel $workspace) => view('workspace::components.page.workspace_edit', compact('workspace')))
+    Route::get('/form/{workspace?}', fn(?WorkspaceModel $workspace) => view('workspace::components.page.workspace_edit', compact('workspace')))
         ->name('workspace.form');
     Route::get('/{workspace}/chats', fn(WorkspaceModel $workspace) => view('workspace::components.page.workspace_chats_page', compact('workspace')))
         ->name('admin.workspace.chats');
