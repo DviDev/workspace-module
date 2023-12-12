@@ -17,19 +17,20 @@ return new class extends Migration
         Schema::create('workspaces', function (Blueprint $table) {
             $table->id();
 
-            $prop = WorkspaceEntityModel::props(null, true);
-            $table->foreignId($prop->user_id)
+            $p = WorkspaceEntityModel::props(null, true);
+            $table->foreignId($p->user_id)
                 ->references('id')->on('users')
                 ->cascadeOnUpdate()->restrictOnDelete();
-            $table->foreignId($prop->parent_id)
+            $table->foreignId($p->parent_id)
                 ->nullable()
                 ->references('id')->on('workspaces')
                 ->cascadeOnUpdate()->nullOnDelete();
-            $table->string($prop->name, 100);
-            $table->string($prop->description, 200)->nullable();
-            $table->timestamp($prop->created_at)->useCurrent();
-            $table->timestamp($prop->updated_at)->useCurrent();
-            $table->timestamp($prop->deleted_at)->nullable();
+            $table->string($p->name, 100);
+            $table->string($p->description, 200)->nullable();
+
+            $table->timestamp($p->created_at)->useCurrent();
+            $table->timestamp($p->updated_at)->useCurrentOnUpdate();
+            $table->timestamp($p->deleted_at)->nullable();
         });
     }
 

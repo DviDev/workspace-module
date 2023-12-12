@@ -2,10 +2,8 @@
 
 namespace Modules\Workspace\Http\Livewire\Form;
 
-use Modules\Base\Http\Livewire\BaseComponent;
+use Modules\Base\Livewire\BaseForm;
 
-class WorkspaceForm extends BaseComponent
+class WorkspaceForm extends BaseForm
 {
-
-
 }

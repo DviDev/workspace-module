@@ -14,13 +14,13 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Workspace\Models\WorkspaceModel;
 
-Route::prefix('workspace')->group(function () {
-    Route::view('/list', 'workspace::components.page.workspaces')->name('admin.workspaces');
-    Route::get('/{workspace}/edit', fn(WorkspaceModel $workspace) =>
-    view('workspace::components.page.workspace_edit', compact('workspace')))
-        ->name('admin.workspace.edit');
-    Route::get('/{workspace}/chats', fn(WorkspaceModel $workspace) =>
-    view('workspace::components.page.workspace_chats_page', compact('workspace')))
+Route::middleware(['auth', 'verified'])->prefix('workspace')->group(function () {
+    Route::get('/list', fn() => view('workspace::components.page.workspaces'))->name('admin.workspace.list');
+
+    Route::get('/form/{workspace?}', fn(?WorkspaceModel $workspace) => view('workspace::components.page.workspace_edit', compact('workspace')))
+        ->name('workspace.form');
+
+    Route::get('/{workspace}/chats', fn(WorkspaceModel $workspace) => view('workspace::components.page.workspace_chats_page', compact('workspace')))
         ->name('admin.workspace.chats');
     Route::get('/{workspace}/links', fn(WorkspaceModel $workspace) =>
         view('workspace::components.page.workspace_links_page', compact('workspace')))
