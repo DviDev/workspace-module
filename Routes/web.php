@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 use Modules\Workspace\Models\WorkspaceModel;
 
 Route::middleware(['auth', 'verified'])->prefix('workspace')->group(function () {
-    Route::view('/workspace/list', 'workspace::components.page.workspaces')->name('admin.workspaces');
+    Route::get('/list', fn() => view('workspace::components.page.workspaces'))->name('admin.workspace.list');
+
     Route::get('/form/{workspace?}', fn(?WorkspaceModel $workspace) => view('workspace::components.page.workspace_edit', compact('workspace')))
         ->name('workspace.form');
+
     Route::get('/{workspace}/chats', fn(WorkspaceModel $workspace) => view('workspace::components.page.workspace_chats_page', compact('workspace')))
         ->name('admin.workspace.chats');
     Route::get('/{workspace}/links', fn(WorkspaceModel $workspace) =>
