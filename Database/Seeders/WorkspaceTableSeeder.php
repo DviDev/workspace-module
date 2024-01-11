@@ -22,7 +22,7 @@ class WorkspaceTableSeeder extends Seeder
     {
         Model::unguard();
 
-        $superAdmin = User::query()->where('type', UserType::SUPER_ADMIN->value)->get()->first();
+        $superAdmin = User::query()->where('type_id', 2)->get()->first();
 
         WorkspaceModel::factory(2)
             ->for($superAdmin)
