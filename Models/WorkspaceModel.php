@@ -4,6 +4,7 @@ namespace Modules\Workspace\Models;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,6 +12,7 @@ use Illuminate\Support\Collection;
 use Modules\Base\Factories\BaseFactory;
 use Modules\Base\Models\BaseModel;
 use Modules\Chat\Models\ChatModel;
+use Modules\Chat\Models\Modules\App\Models\Relations\BelongsToUser;
 use Modules\Link\Models\LinkModel;
 use Modules\Post\Models\PostModel;
 use Modules\Project\Models\ProjectModel;
@@ -32,6 +34,7 @@ class WorkspaceModel extends BaseModel
 {
     use HasFactory;
     use WorkspaceProps;
+    use BelongsToUser;
 
     protected $with = ['user'];
 
@@ -44,6 +47,16 @@ class WorkspaceModel extends BaseModel
     {
         return new class extends BaseFactory {
             protected $model = WorkspaceModel::class;
+
+            protected function callAfterCreating(Collection $instances, ?Model $parent = null): void
+            {
+                $instances->each(function (WorkspaceModel $model) {
+                    $model->participants()->sync($model->user_id);
+                });
+                parent::callAfterCreating($instances, $parent);
+            }
+
+
         };
     }
 

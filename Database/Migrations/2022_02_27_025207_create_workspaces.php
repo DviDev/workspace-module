@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string($p->description, 200)->nullable();
 
             $table->timestamp($p->created_at)->useCurrent();
-            $table->timestamp($p->updated_at)->useCurrentOnUpdate();
+            $table->timestamp($p->updated_at)->useCurrent()->useCurrentOnUpdate();
             $table->timestamp($p->deleted_at)->nullable();
         });
     }
