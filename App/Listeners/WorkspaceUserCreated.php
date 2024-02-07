@@ -20,8 +20,9 @@ class WorkspaceUserCreated
     public function handle(UserCreated $event): void
     {
         /**@var WorkspaceModel $workspace */
+        $name = $event->user->name . "'s " . trans('Personal');
         $workspace = WorkspaceModel::query()->create([
-            'name' => $event->user->name . "'s " . trans('Personal'),
+            'name' => $name,
             'user_id' => $event->user->id
         ]);
         $workspace->participants()->sync([$event->user->id]);
