@@ -21,6 +21,6 @@ class WorkspaceDatabaseSeeder extends BaseSeeder
 
         (new ScanTableDomain())->scan('workspace');
 
-        $this->commandInfo(__CLASS__, '✔️');
+        $this->commandInfo(__CLASS__, '🟢 done');
     }
 }

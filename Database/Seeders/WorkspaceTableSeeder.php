@@ -40,6 +40,6 @@ class WorkspaceTableSeeder extends BaseSeeder
             })
             ->create();
 
-        $this->commandInfo(__CLASS__, '✔️');
+        $this->commandInfo(__CLASS__, '🟢 done');
     }
 }
