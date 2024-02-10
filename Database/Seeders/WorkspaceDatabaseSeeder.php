@@ -3,10 +3,10 @@
 namespace Modules\Workspace\Database\Seeders;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Seeder;
+use Modules\Base\Database\Seeders\BaseSeeder;
 use Modules\DBMap\Domains\ScanTableDomain;
 
-class WorkspaceDatabaseSeeder extends Seeder
+class WorkspaceDatabaseSeeder extends BaseSeeder
 {
     /**
      * Run the database seeds.
@@ -17,7 +17,10 @@ class WorkspaceDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->command->warn(PHP_EOL . '🤖 Escaneando módulo Workspace ...');
+        $this->commandWarn(__CLASS__, "🌱 seeding");
+
         (new ScanTableDomain())->scan('workspace');
+
+        $this->commandInfo(__CLASS__, '✔️');
     }
 }
