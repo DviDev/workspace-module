@@ -2,9 +2,8 @@
 
 use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
 use Modules\Workspace\Models\WorkspaceModel;
-use Tests\TestCase;
 
-uses(TestCase::class)->in(__DIR__);
+//uses(TestCase::class)->in(__DIR__);
 
 it('should be owner', function () {
     $p = WorkspaceEntityModel::props();

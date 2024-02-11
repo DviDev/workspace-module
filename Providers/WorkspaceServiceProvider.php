@@ -5,6 +5,8 @@ namespace Modules\Workspace\Providers;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
+use Modules\Workspace\App\Console\DisableUnecessaryModulesCommand;
+use Modules\Workspace\App\Console\TestWorkspaceModuleCommand;
 use Modules\Workspace\App\Providers\WorkspaceEventServiceProvider;
 use Modules\Workspace\Http\Livewire\Form\WorkspaceForm;
 use Modules\Workspace\Http\Livewire\Pages\WorkspaceChatPage;
@@ -69,6 +71,9 @@ class WorkspaceServiceProvider extends ServiceProvider
 
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(WorkspaceEventServiceProvider::class);
+
+        $this->commands(TestWorkspaceModuleCommand::class);
+        $this->commands(DisableUnecessaryModulesCommand::class);
     }
 
     /**
