@@ -2,8 +2,12 @@
 
 namespace Modules\Workspace\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
+use Modules\Workspace\App\Console\DisableUnecessaryModulesCommand;
+use Modules\Workspace\App\Console\TestWorkspaceModuleCommand;
+use Modules\Workspace\App\Providers\WorkspaceEventServiceProvider;
 use Modules\Workspace\Http\Livewire\Form\WorkspaceForm;
 use Modules\Workspace\Http\Livewire\Pages\WorkspaceChatPage;
 use Modules\Workspace\Http\Livewire\Pages\WorkspaceLinkPage;
@@ -41,6 +45,7 @@ class WorkspaceServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+
     }
 
     /**
@@ -50,21 +55,25 @@ class WorkspaceServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        \Livewire::component('workspace::form', WorkspaceForm::class);
-        \Livewire::component('workspace::page.chat', WorkspaceChatPage::class);
-        \Livewire::component('workspace::page.link', WorkspaceLinkPage::class);
-        \Livewire::component('workspace::page.participant', WorkspaceParticipantPage::class);
-        \Livewire::component('workspace::page.post', WorkspacePostPage::class);
-        \Livewire::component('workspace::page.list', WorkspacesPage::class);
-        \Livewire::component('workspace::chat-table', WorkspaceChatTable::class);
-        \Livewire::component('workspace::link-table', WorkspaceLinkTable::class);
-        \Livewire::component('workspace::participant-table', WorkspaceParticipantTable::class);
-        \Livewire::component('workspace::post-table', WorkspacePostTable::class);
-        \Livewire::component('workspace::project-table', WorkspaceProjectTable::class);
-        \Livewire::component('workspace::table', WorkspaceTable::class);
-        \Livewire::component('workspace::tag-table', WorkspaceTagTable::class);
+        Livewire::component('workspace::form', WorkspaceForm::class);
+        Livewire::component('workspace::page.link', WorkspaceLinkPage::class);
+        Livewire::component('workspace::page.participant', WorkspaceParticipantPage::class);
+        Livewire::component('workspace::page.chat', WorkspaceChatPage::class);
+        Livewire::component('workspace::page.post', WorkspacePostPage::class);
+        Livewire::component('workspace::page.list', WorkspacesPage::class);
+        Livewire::component('workspace::chat-table', WorkspaceChatTable::class);
+        Livewire::component('workspace::link-table', WorkspaceLinkTable::class);
+        Livewire::component('workspace::participant-table', WorkspaceParticipantTable::class);
+        Livewire::component('workspace::post-table', WorkspacePostTable::class);
+        Livewire::component('workspace::project-table', WorkspaceProjectTable::class);
+        Livewire::component('workspace::table', WorkspaceTable::class);
+        Livewire::component('workspace::tag-table', WorkspaceTagTable::class);
 
         $this->app->register(RouteServiceProvider::class);
+        $this->app->register(WorkspaceEventServiceProvider::class);
+
+        $this->commands(TestWorkspaceModuleCommand::class);
+        $this->commands(DisableUnecessaryModulesCommand::class);
     }
 
     /**
@@ -129,7 +138,7 @@ class WorkspaceServiceProvider extends ServiceProvider
     private function getPublishableViewPaths(): array
     {
         $paths = [];
-        foreach (\Config::get('view.paths') as $path) {
+        foreach (config('view.paths') as $path) {
             if (is_dir($path . '/modules/' . $this->moduleNameLower)) {
                 $paths[] = $path . '/modules/' . $this->moduleNameLower;
             }

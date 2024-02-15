@@ -8,6 +8,7 @@ use Modules\Workspace\Models\WorkspaceTagModel;
 
 class WorkspaceTagTableTest extends BaseTest
 {
+//    use DatabaseTransactions;
 
     public function getEntityClass(): string|WorkspaceTagEntityModel
     {

@@ -12,7 +12,10 @@
 */
 
 use Illuminate\Support\Facades\Route;
+use Modules\Project\Services\DynamicRoutes;
 use Modules\Workspace\Models\WorkspaceModel;
+
+DynamicRoutes::all('Workspace');
 
 Route::middleware(['auth', 'verified'])->prefix('workspace')->group(function () {
     Route::get('/list', fn() => view('workspace::components.page.workspaces'))->name('admin.workspace.list');
