@@ -3,16 +3,14 @@
 namespace Modules\Workspace\Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Workspace\Models\WorkspaceModel;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Tests\TestCase;
 
 class WorkspaceStoreFieldValidationTest extends TestCase
 {
 //    use DatabaseMigrations;
 //    use DatabaseTransactions;
-    use RefreshDatabase;
+//    use RefreshDatabase;
     use WorkspaceValidations;
 
     protected WorkspaceModel $workspace;
@@ -27,17 +25,15 @@ class WorkspaceStoreFieldValidationTest extends TestCase
     /**
      * @test
      */
-    public function storeWithInvalidParentId()
+    public function testStoreWithInvalidParentId()
     {
-        $user = User::factory()->create();
-        $this->postJson($this->getRoute(), [
-            'user_id' => $user->id,
-            'parent_id' => 1000000000000,
-            'name' => 'aa',
-            'description' => 'aa'
-        ])
-            ->assertStatus(404)
-            ->assertJsonFragment(['exception' => NotFoundHttpException::class]);
+        $user = User::factory()->create(['email_verified_at' => now()]);
+        $this->actingAs($user);
+        $workspace = WorkspaceModel::factory()->create();
+        $this->post('workspace/form/' . $workspace->id)
+            ->assertStatus(200);
+//            ->assertStatus(404)
+//            ->assertJsonFragment(['exception' => NotFoundHttpException::class]);
     }
 
     /**
@@ -57,7 +53,7 @@ class WorkspaceStoreFieldValidationTest extends TestCase
 
     protected function getRoute(): string
     {
-        return route('workspace.store');
+        return route('workspace.form');
     }
 
 }

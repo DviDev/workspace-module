@@ -20,8 +20,8 @@ DynamicRoutes::all('Workspace');
 Route::middleware(['auth', 'verified'])->prefix('workspace')->group(function () {
     Route::get('/list', fn() => view('workspace::components.page.workspaces'))->name('admin.workspace.list');
 
-    Route::get('/form/{workspace?}', fn(?WorkspaceModel $workspace) => view('workspace::components.page.workspace_edit', compact('workspace')))
-        ->name('workspace.form');
+    /*Route::get('/form/{workspace?}', fn(?WorkspaceModel $workspace) => view('workspace::components.page.workspace_edit', compact('workspace')))
+        ->name('workspace.form');*/
 
     Route::get('/{workspace}/chats', fn(WorkspaceModel $workspace) => view('workspace::components.page.workspace_chats_page', compact('workspace')))
         ->name('admin.workspace.chats');
