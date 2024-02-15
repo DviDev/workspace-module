@@ -5,9 +5,7 @@ namespace Modules\Workspace\Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Base\Database\Seeders\BaseSeeder;
-use Modules\Project\Models\ProjectModel;
 use Modules\Workspace\Models\WorkspaceModel;
-use Modules\Workspace\Models\WorkspaceProjectModel;
 
 class WorkspaceTableSeeder extends BaseSeeder
 {
@@ -31,10 +29,10 @@ class WorkspaceTableSeeder extends BaseSeeder
                 ['name' => 'Customers']
             )
             ->afterCreating(function (WorkspaceModel $workspace) {
-                WorkspaceProjectModel::factory()
+                /*WorkspaceProjectModel::factory()
                     ->for($workspace)
                     ->for(ProjectModel::first())
-                    ->create();
+                    ->create();*/
 
                 $workspace->participants()->attach([$workspace->user_id, ...User::factory(2)->create()->modelKeys()]);
             })

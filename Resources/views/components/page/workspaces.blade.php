@@ -1,6 +1,6 @@
 <x-lte::layout.v1.page title="Workspaces">
     <x-lte::card.body>
-        <table>
+        <table class="table table-sm table-hover">
             <thead>
             <tr>
                 <th style="width: 5%">Id</th>
