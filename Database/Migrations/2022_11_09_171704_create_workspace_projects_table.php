@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Modules\Workspace\Entities\WorkspaceProject\WorkspaceProjectEntityModel;
+use Nwidart\Modules\Facades\Module;
 
 return new class extends Migration
 {
@@ -14,6 +15,9 @@ return new class extends Migration
      */
     public function up()
     {
+        if (!collect(Module::allEnabled())->contains('Project')) {
+            return;
+        }
         Schema::create('workspace_projects', function (Blueprint $table) {
             $p = WorkspaceProjectEntityModel::props(null, true);
             $table->id();
