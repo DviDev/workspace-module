@@ -2,7 +2,7 @@
 
 namespace Modules\Workspace\App\Listeners;
 
-use App\Events\UserCreated;
+use Modules\App\Events\UserCreatedEvent;
 use Modules\Workspace\Models\WorkspaceModel;
 
 class WorkspaceUserCreatedListener
@@ -17,7 +17,7 @@ class WorkspaceUserCreatedListener
     /**
      * Handle the event.
      */
-    public function handle(UserCreated $event): void
+    public function handle(UserCreatedEvent $event): void
     {
         /**@var WorkspaceModel $workspace */
         $name = $event->user->name . "'s " . trans('Personal');
