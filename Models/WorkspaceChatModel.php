@@ -38,13 +38,6 @@ class WorkspaceChatModel extends BaseModel
         return self::dbTable('workspace_chats', $alias);
     }
 
-    public function getGuarded():array
-    {
-        $p = WorkspaceChatEntityModel::props();
-        return collect($p->toArray())->except([
-            $p->id
-        ])->toArray();
-    }
 
     public function workspace(): BelongsTo
     {
