@@ -5,6 +5,8 @@ namespace Modules\Workspace\Providers;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
+use Modules\Base\Events\BaseSeederInitialIndependentDataEvent;
+use Modules\DBMap\Events\ScanTableEvent;
 use Modules\Workspace\App\Console\DisableUnecessaryModulesCommand;
 use Modules\Workspace\App\Console\TestWorkspaceModuleCommand;
 use Modules\Workspace\App\Providers\WorkspaceEventServiceProvider;
@@ -21,6 +23,8 @@ use Modules\Workspace\Http\Livewire\WorkspacePostTable;
 use Modules\Workspace\Http\Livewire\WorkspaceProjectTable;
 use Modules\Workspace\Http\Livewire\WorkspaceTable;
 use Modules\Workspace\Http\Livewire\WorkspaceTagTable;
+use Modules\Workspace\Listeners\WorkspaceInitialIndependentSeederDataListener;
+use Modules\Workspace\Listeners\WorkspaceScanTableListener;
 
 class WorkspaceServiceProvider extends ServiceProvider
 {
@@ -71,6 +75,9 @@ class WorkspaceServiceProvider extends ServiceProvider
 
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(WorkspaceEventServiceProvider::class);
+
+        \Event::listen(BaseSeederInitialIndependentDataEvent::class, WorkspaceInitialIndependentSeederDataListener::class);
+        \Event::listen(ScanTableEvent::class, WorkspaceScanTableListener::class);
 
         $this->commands(TestWorkspaceModuleCommand::class);
         $this->commands(DisableUnecessaryModulesCommand::class);
