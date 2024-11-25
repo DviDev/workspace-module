@@ -4,6 +4,7 @@ namespace Modules\Workspace\Listeners;
 
 use Modules\DBMap\Domains\ScanTableDomain;
 use Modules\DBMap\Events\ScanTableEvent;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class WorkspaceScanTableListener
 {
@@ -20,8 +21,9 @@ class WorkspaceScanTableListener
      */
     public function handle(ScanTableEvent $event): void
     {
-        $event->command->warn(PHP_EOL . '🤖 Workspace module: scanning ...');
+        $output = new ConsoleOutput();
+        $output->writeln(PHP_EOL . '🤖 Workspace module: scanning ...');
         (new ScanTableDomain())->scan('workspace');
-        $event->command->getOutput()->info('🤖 Workspace module: ✔ DONE');
+        $output->writeln('🤖 Workspace module: ✔ DONE');
     }
 }
