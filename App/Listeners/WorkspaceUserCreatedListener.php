@@ -2,7 +2,7 @@
 
 namespace Modules\Workspace\App\Listeners;
 
-use Modules\App\Events\UserCreatedEvent;
+use Modules\Person\Events\UserCreatedEvent;
 use Modules\Workspace\Models\WorkspaceModel;
 
 class WorkspaceUserCreatedListener
