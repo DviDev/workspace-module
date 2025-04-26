@@ -20,5 +20,6 @@
         "psr-4": {
             "Modules\\Workspace\\": ""
         }
-    }
+    },
+    "minimum-stability": "stable"
 }
