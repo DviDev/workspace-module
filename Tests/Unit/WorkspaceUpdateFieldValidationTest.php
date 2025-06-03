@@ -38,7 +38,7 @@ class WorkspaceUpdateFieldValidationTest extends TestCase
         $this->workspace = WorkspaceModel::factory()->create(['user_id' => $this->user->id]);
     }
 
-    /** @test */
+   #[Test]
     public function loggedUserShouldBeOwner()
     {
         $this->postJson($this->getRoute(), [
@@ -47,7 +47,7 @@ class WorkspaceUpdateFieldValidationTest extends TestCase
         ])->assertOk();
     }
 
-    /** @test */
+   #[Test]
     public function loggedUserDontShouldBeOwner()
     {
         $this->actingAs(User::factory()->create());
