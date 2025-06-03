@@ -5,6 +5,7 @@ namespace Modules\Workspace\Tests\Unit;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Modules\Workspace\Models\WorkspaceModel;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class WorkspaceDeleteFieldValidationTest extends TestCase
@@ -12,9 +13,7 @@ class WorkspaceDeleteFieldValidationTest extends TestCase
     use DatabaseMigrations;
     use DatabaseTransactions;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteIdRequired()
     {
         $this->postJson(route('workspace.delete'), [
@@ -22,9 +21,7 @@ class WorkspaceDeleteFieldValidationTest extends TestCase
         ])->assertStatus(422);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteIdString()
     {
         $this->postJson(route('workspace.delete'), [
@@ -33,9 +30,7 @@ class WorkspaceDeleteFieldValidationTest extends TestCase
             ->assertJsonValidationErrors(['id' => __('validation.integer', ['attribute' => 'id'])]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteWithInvalidId()
     {
         $this->postJson(route('workspace.delete'), [
@@ -43,9 +38,7 @@ class WorkspaceDeleteFieldValidationTest extends TestCase
         ])->assertStatus(422);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteWithValidId()
     {
         /**@var WorkspaceModel $workspace*/

@@ -4,6 +4,7 @@ namespace Modules\Workspace\Tests\Feature;
 
 use App\Models\User;
 use Modules\Workspace\Models\WorkspaceModel;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class WorkspaceStoreFieldValidationTest extends TestCase
@@ -22,9 +23,7 @@ class WorkspaceStoreFieldValidationTest extends TestCase
         $this->workspace = WorkspaceModel::factory()->create();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function testStoreWithInvalidParentId()
     {
         $user = User::factory()->create(['email_verified_at' => now()]);
@@ -36,9 +35,7 @@ class WorkspaceStoreFieldValidationTest extends TestCase
 //            ->assertJsonFragment(['exception' => NotFoundHttpException::class]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function storeWithInvalidName()
     {
         $this->actingAs(User::factory()->create());

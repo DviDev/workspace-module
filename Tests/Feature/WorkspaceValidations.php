@@ -4,9 +4,7 @@ namespace Modules\Workspace\Tests\Feature;
 
 trait WorkspaceValidations
 {
-    /**
-     * @test
-     */
+    #[Test]
 //    public function validatesUserIdAsRequired()
 //    {
 //        $this->postJson($this->getRoute(), [
@@ -18,9 +16,7 @@ trait WorkspaceValidations
 //            ]);
 //    }
 
-    /**
-     * @test
-     */
+    #[Test]
 //    public function validatesUserIdAsInteger()
 //    {
 //        $this->postJson($this->getRoute(), ['user_id' => 's'])
@@ -30,9 +26,7 @@ trait WorkspaceValidations
 //            ]);
 //    }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function validatesNameAsRequired(): void
     {
         $this->postJson($this->getRoute(), [
@@ -45,9 +39,7 @@ trait WorkspaceValidations
             ]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function validatesNameAsString(): void
     {
         $this->postJson($this->getRoute(), [
@@ -60,9 +52,7 @@ trait WorkspaceValidations
             ]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function validatesNameMinLength(): void
     {
         $this->postJson($this->getRoute(), [
@@ -75,9 +65,7 @@ trait WorkspaceValidations
             ]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function validatesNameMaxLength(): void
     {
         $this->postJson($this->getRoute(), [
@@ -90,9 +78,7 @@ trait WorkspaceValidations
             ]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function validatesDescriptionAsString(): void
     {
         $this->postJson($this->getRoute(), [
@@ -106,9 +92,7 @@ trait WorkspaceValidations
             ]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function validatesDescriptionMaxLength(): void
     {
         $this->postJson($this->getRoute(), [
