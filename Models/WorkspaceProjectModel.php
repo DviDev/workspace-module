@@ -12,7 +12,9 @@ use Modules\Workspace\Entities\WorkspaceProject\WorkspaceProjectProps;
 
 /**
  * @author Davi Menezes (davimenezes.dev@gmail.com)
+ *
  * @link https://github.com/DaviMenezes
+ *
  * @method WorkspaceProjectEntityModel toEntity()
  */
 class WorkspaceProjectModel extends BaseModel
@@ -27,7 +29,8 @@ class WorkspaceProjectModel extends BaseModel
 
     protected static function newFactory(): BaseFactory
     {
-        return new class extends BaseFactory {
+        return new class extends BaseFactory
+        {
             protected $model = WorkspaceProjectModel::class;
         };
     }

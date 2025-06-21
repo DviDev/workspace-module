@@ -13,13 +13,13 @@ class WorkspaceUpdateFieldValidationTest extends TestCase
 {
     use DatabaseMigrations;
     use DatabaseTransactions;
-
     use WorkspaceValidations;
 
     /**
      * @var WorkspaceModel
      */
     protected mixed $workspace;
+
     /**
      * @var User
      */
@@ -38,7 +38,7 @@ class WorkspaceUpdateFieldValidationTest extends TestCase
         $this->workspace = WorkspaceModel::factory()->create(['user_id' => $this->user->id]);
     }
 
-   #[Test]
+    #[Test]
     public function loggedUserShouldBeOwner()
     {
         $this->postJson($this->getRoute(), [
@@ -47,7 +47,7 @@ class WorkspaceUpdateFieldValidationTest extends TestCase
         ])->assertOk();
     }
 
-   #[Test]
+    #[Test]
     public function loggedUserDontShouldBeOwner()
     {
         $this->actingAs(User::factory()->create());

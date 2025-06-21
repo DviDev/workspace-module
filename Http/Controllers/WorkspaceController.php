@@ -2,12 +2,10 @@
 
 namespace Modules\Workspace\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
-use Modules\Workspace\Http\Requests\WorkspaceStoreRequest;
 use Modules\Workspace\Http\Requests\WorkspaceUpdateRequest;
 use Modules\Workspace\Models\WorkspaceModel;
 
@@ -23,8 +21,9 @@ class WorkspaceController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
+     *
+     * @param  Request  $request
+     * @param  int  $id
      */
     public function update(WorkspaceUpdateRequest $request, WorkspaceModel $workspace, WorkspaceEntityModel $p)
     {
@@ -39,15 +38,17 @@ class WorkspaceController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * @param int $id
+     *
+     * @param  int  $id
      * @return Renderable
      */
     public function destroy(Request $request)
     {
         $request->validate([
-            'id' => 'int|required'
+            'id' => 'int|required',
         ]);
         $model = (WorkspaceModel::query()->findOrFail($request->get('id')));
+
         return $model->delete();
     }
 
@@ -56,7 +57,7 @@ class WorkspaceController extends Controller
         return [
             'parent_id' => 'int',
             'name' => 'string|required|min:2|max:200',
-            'description' => 'string|max:200'
+            'description' => 'string|max:200',
         ];
     }
 }

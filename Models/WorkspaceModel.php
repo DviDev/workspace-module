@@ -24,17 +24,20 @@ use Modules\Workspace\Entities\Workspace\WorkspaceProps;
 
 /**
  * @author Davi Menezes (davimenezes.dev@gmail.com)
+ *
  * @link https://github.com/DaviMenezes
+ *
  * @property-read User $user
  * @property-read User[]|Collection $participants
  * @property-read LinkModel[] $links
+ *
  * @method WorkspaceEntityModel toEntity()
  */
 class WorkspaceModel extends BaseModel
 {
+    use BelongsToUser;
     use HasFactory;
     use WorkspaceProps;
-    use BelongsToUser;
 
     protected $with = ['user'];
 
@@ -45,7 +48,8 @@ class WorkspaceModel extends BaseModel
 
     protected static function newFactory(): BaseFactory
     {
-        return new class extends BaseFactory {
+        return new class extends BaseFactory
+        {
             protected $model = WorkspaceModel::class;
 
             protected function callAfterCreating(Collection $instances, ?Model $parent = null): void
@@ -55,8 +59,6 @@ class WorkspaceModel extends BaseModel
                 });
                 parent::callAfterCreating($instances, $parent);
             }
-
-
         };
     }
 

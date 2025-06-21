@@ -13,10 +13,10 @@ class WorkspaceUserObserver
     public function created(User $user): void
     {
         dd('created');
-        /**@var WorkspaceModel $w */
+        /** @var WorkspaceModel $w */
         $w = WorkspaceModel::query()->create([
             'name' => trans('My workspace'),
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
         $w->participants()->save($user);
     }

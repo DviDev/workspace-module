@@ -8,7 +8,9 @@ use Modules\Workspace\Models\WorkspaceChatModel;
 
 /**
  * @author Davi Menezes(davimenezes.dev@gmail.com)
+ *
  * @link https://github.com/DaviMenezes
+ *
  * @method self obj()
  * @method WorkspaceChatModel model()
  * @method WorkspaceChatEntityModel find($id)
@@ -20,7 +22,7 @@ use Modules\Workspace\Models\WorkspaceChatModel;
 class WorkspaceChatRepository extends BaseRepository
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function modelClass(): string
     {

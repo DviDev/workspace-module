@@ -18,7 +18,7 @@ class WorkspaceUpdateRequest extends FormRequest
             'id' => 'int|required',
             'parent_id' => 'int',
             'name' => 'string|required|min:2|max:200',
-            'description' => 'string|max:200'
+            'description' => 'string|max:200',
         ];
     }
 
@@ -30,8 +30,8 @@ class WorkspaceUpdateRequest extends FormRequest
     public function authorize()
     {
         return WorkspaceModel::query()->where([
-            'id'  => $this->request->get('id'),
-            'user_id' => $this->user()->id
+            'id' => $this->request->get('id'),
+            'user_id' => $this->user()->id,
         ])->exists();
     }
 }

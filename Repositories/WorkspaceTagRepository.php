@@ -8,7 +8,9 @@ use Modules\Workspace\Models\WorkspaceTagModel;
 
 /**
  * @author Davi Menezes(davimenezes.dev@gmail.com)
+ *
  * @link https://github.com/DaviMenezes
+ *
  * @method self obj()
  * @method WorkspaceTagModel model()
  * @method WorkspaceTagEntityModel find($id)
@@ -20,7 +22,7 @@ use Modules\Workspace\Models\WorkspaceTagModel;
 class WorkspaceTagRepository extends BaseRepository
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function modelClass(): string
     {

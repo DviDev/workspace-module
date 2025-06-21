@@ -9,7 +9,4 @@ namespace Modules\Workspace\Entities\WorkspaceParticipant;
  * @property $created_at
  * @property $deleted_at
  */
-trait WorkspaceParticipantProps
-{
-
-}
+trait WorkspaceParticipantProps {}

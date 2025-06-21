@@ -12,9 +12,12 @@ use Modules\Workspace\Entities\WorkspacePost\WorkspacePostProps;
 
 /**
  * @author Davi Menezes (davimenezes.dev@gmail.com)
+ *
  * @link https://github.com/DaviMenezes
+ *
  * @property-read WorkspaceModel $workspace
  * @property-read PostModel $post
+ *
  * @method WorkspacePostEntityModel toEntity()
  */
 class WorkspacePostModel extends BaseModel
@@ -29,7 +32,8 @@ class WorkspacePostModel extends BaseModel
 
     protected static function newFactory(): BaseFactory
     {
-        return new class extends BaseFactory {
+        return new class extends BaseFactory
+        {
             protected $model = WorkspacePostModel::class;
         };
     }

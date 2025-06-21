@@ -15,7 +15,7 @@ return new class extends Migration
      */
     public function up()
     {
-        if (!collect(Module::allEnabled())->contains('Project')) {
+        if (! collect(Module::allEnabled())->contains('Project')) {
             return;
         }
         Schema::create('workspace_projects', function (Blueprint $table) {

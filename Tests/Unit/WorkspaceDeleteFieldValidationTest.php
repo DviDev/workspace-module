@@ -14,38 +14,38 @@ class WorkspaceDeleteFieldValidationTest extends TestCase
     use DatabaseTransactions;
 
     #[Test]
-    public function deleteIdRequired()
+    public function delete_id_required()
     {
         $this->postJson(route('workspace.delete'), [
-            'id' => null
+            'id' => null,
         ])->assertStatus(422);
     }
 
     #[Test]
-    public function deleteIdString()
+    public function delete_id_string()
     {
         $this->postJson(route('workspace.delete'), [
-            'id' => 'a'
+            'id' => 'a',
         ])->assertStatus(422)
             ->assertJsonValidationErrors(['id' => __('validation.integer', ['attribute' => 'id'])]);
     }
 
     #[Test]
-    public function deleteWithInvalidId()
+    public function delete_with_invalid_id()
     {
         $this->postJson(route('workspace.delete'), [
-            'id' => '1.000.000.000.000.000.000.000.000'
+            'id' => '1.000.000.000.000.000.000.000.000',
         ])->assertStatus(422);
     }
 
     #[Test]
-    public function deleteWithValidId()
+    public function delete_with_valid_id()
     {
-        /**@var WorkspaceModel $workspace*/
+        /** @var WorkspaceModel $workspace */
         $workspace = WorkspaceModel::factory()->create();
 
         $this->postJson(route('workspace.delete'), [
-            'id' => $workspace->id
+            'id' => $workspace->id,
         ])->assertOk();
     }
 }
