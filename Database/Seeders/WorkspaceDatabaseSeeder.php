@@ -16,8 +16,8 @@ class WorkspaceDatabaseSeeder extends BaseSeeder
     {
         Model::unguard();
 
-        $this->commandWarn(__CLASS__, "🌱 seeding");
-        //...
+        $this->commandWarn(__CLASS__, '🌱 seeding');
+        // ...
         $this->commandInfo(__CLASS__, '🟢 done');
     }
 }

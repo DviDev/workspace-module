@@ -52,7 +52,7 @@ final class WorkspaceLinkTable extends PowerGridComponent
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
-            Detail::make()->view('link::components.list_detail')->showCollapseIcon()
+            Detail::make()->view('link::components.list_detail')->showCollapseIcon(),
         ];
     }
 

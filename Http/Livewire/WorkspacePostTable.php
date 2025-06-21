@@ -113,7 +113,7 @@ final class WorkspacePostTable extends PowerGridComponent
                     </a>
                     HTML
                     );
-                })
+                }),
         ];
     }
 }

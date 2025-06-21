@@ -8,7 +8,9 @@ use Modules\Workspace\Models\WorkspaceProjectModel;
 
 /**
  * @author Davi Menezes(davimenezes.dev@gmail.com)
+ *
  * @link https://github.com/DaviMenezes
+ *
  * @method self obj()
  * @method WorkspaceProjectModel model()
  * @method WorkspaceProjectEntityModel find($id)
@@ -20,7 +22,7 @@ use Modules\Workspace\Models\WorkspaceProjectModel;
 class WorkspaceProjectRepository extends BaseRepository
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function modelClass(): string
     {

@@ -12,7 +12,4 @@ namespace Modules\Workspace\Entities\Workspace;
  * @property $updated_at
  * @property $deleted_at
  */
-trait WorkspaceProps
-{
-
-}
+trait WorkspaceProps {}

@@ -10,7 +10,4 @@ namespace Modules\Workspace\Entities\WorkspaceChat;
  * @property $updated_at
  * @property $deleted_at
  */
-trait WorkspaceChatProps
-{
-
-}
+trait WorkspaceChatProps {}

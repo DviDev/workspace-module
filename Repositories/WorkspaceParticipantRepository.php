@@ -8,7 +8,9 @@ use Modules\Workspace\Models\WorkspaceParticipantModel;
 
 /**
  * @author Davi Menezes(davimenezes.dev@gmail.com)
+ *
  * @link https://github.com/DaviMenezes
+ *
  * @method self obj()
  * @method WorkspaceParticipantModel model()
  * @method WorkspaceParticipantEntityModel find($id)
@@ -20,7 +22,7 @@ use Modules\Workspace\Models\WorkspaceParticipantModel;
 class WorkspaceParticipantRepository extends BaseRepository
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function modelClass(): string
     {

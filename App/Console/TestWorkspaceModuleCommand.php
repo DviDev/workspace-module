@@ -12,6 +12,7 @@ class TestWorkspaceModuleCommand extends Command
      * The name and signature of the console command.
      */
     protected $signature = 'workspace:test {class}';
+
     /**
      * The console command description.
      */
@@ -36,12 +37,9 @@ class TestWorkspaceModuleCommand extends Command
         Artisan::call('test', ['filter' => $argument]);
         $this->info(Artisan::output());
 
-        collect(Module::all())->each(fn($module) => Artisan::call('module:enable ' . $module));
+        collect(Module::all())->each(fn ($module) => Artisan::call('module:enable '.$module));
     }
 
-    /**
-     * @return string
-     */
     protected function getClass($class): string
     {
         return str($class)

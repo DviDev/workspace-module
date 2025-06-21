@@ -12,9 +12,12 @@ use Modules\Workspace\Entities\WorkspaceChat\WorkspaceChatProps;
 
 /**
  * @author Davi Menezes (davimenezes.dev@gmail.com)
+ *
  * @link https://github.com/DaviMenezes
+ *
  * @property-read  WorkspaceModel $workspace
  * @property-read  ChatModel $chat
+ *
  * @method WorkspaceChatEntityModel toEntity()
  */
 class WorkspaceChatModel extends BaseModel
@@ -29,15 +32,16 @@ class WorkspaceChatModel extends BaseModel
 
     protected static function newFactory(): BaseFactory
     {
-        return new class extends BaseFactory {
+        return new class extends BaseFactory
+        {
             protected $model = WorkspaceChatModel::class;
         };
     }
+
     public static function table($alias = null): string
     {
         return self::dbTable('workspace_chats', $alias);
     }
-
 
     public function workspace(): BelongsTo
     {
@@ -48,5 +52,4 @@ class WorkspaceChatModel extends BaseModel
     {
         return $this->belongsTo(ChatModel::class, 'chat_id');
     }
-
 }

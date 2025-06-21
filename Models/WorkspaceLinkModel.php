@@ -12,9 +12,12 @@ use Modules\Workspace\Entities\WorkspaceLink\WorkspaceLinkProps;
 
 /**
  * @author Davi Menezes (davimenezes.dev@gmail.com)
+ *
  * @link https://github.com/DaviMenezes
+ *
  * @property-read WorkspaceModel $workspace
  * @property-read LinkModel $link
+ *
  * @method WorkspaceLinkEntityModel toEntity()
  */
 class WorkspaceLinkModel extends BaseModel
@@ -29,7 +32,8 @@ class WorkspaceLinkModel extends BaseModel
 
     protected static function newFactory(): BaseFactory
     {
-        return new class extends BaseFactory {
+        return new class extends BaseFactory
+        {
             protected $model = WorkspaceLinkModel::class;
         };
     }

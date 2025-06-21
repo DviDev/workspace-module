@@ -10,7 +10,4 @@ namespace Modules\Workspace\Entities\WorkspaceTag;
  * @property $created_at
  * @property $updated_at
  */
-trait WorkspaceTagProps
-{
-
-}
+trait WorkspaceTagProps {}

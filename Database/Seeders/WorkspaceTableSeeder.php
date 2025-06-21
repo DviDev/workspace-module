@@ -18,7 +18,7 @@ class WorkspaceTableSeeder extends BaseSeeder
     {
         Model::unguard();
 
-        $this->commandWarn(__CLASS__, "🌱 seeding");
+        $this->commandWarn(__CLASS__, '🌱 seeding');
 
         $superAdmin = User::query()->where('type_id', 2)->get()->first();
 

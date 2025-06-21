@@ -21,9 +21,9 @@ class WorkspaceScanTableListener
      */
     public function handle(ScanTableEvent $event): void
     {
-        $output = new ConsoleOutput();
-        $output->writeln(PHP_EOL . '🤖 Workspace module: scanning ...');
-        (new ScanTableDomain())->scan('workspace');
+        $output = new ConsoleOutput;
+        $output->writeln(PHP_EOL.'🤖 Workspace module: scanning ...');
+        (new ScanTableDomain)->scan('workspace');
         $output->writeln('🤖 Workspace module: ✔ DONE');
     }
 }

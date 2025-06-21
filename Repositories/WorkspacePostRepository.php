@@ -8,7 +8,9 @@ use Modules\Workspace\Models\WorkspacePostModel;
 
 /**
  * @author Davi Menezes(davimenezes.dev@gmail.com)
+ *
  * @link https://github.com/DaviMenezes
+ *
  * @method self obj()
  * @method WorkspacePostModel model()
  * @method WorkspacePostEntityModel find($id)
@@ -20,7 +22,7 @@ use Modules\Workspace\Models\WorkspacePostModel;
 class WorkspacePostRepository extends BaseRepository
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function modelClass(): string
     {

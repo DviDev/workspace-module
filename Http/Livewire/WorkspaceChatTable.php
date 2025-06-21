@@ -20,6 +20,7 @@ final class WorkspaceChatTable extends PowerGridComponent
     use ActionButton;
 
     public WorkspaceModel $workspace;
+
     protected $chats;
 
     public function mount(): void

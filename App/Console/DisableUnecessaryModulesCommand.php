@@ -14,6 +14,7 @@ class DisableUnecessaryModulesCommand extends Command
      * The name and signature of the console command.
      */
     protected $signature = 'workspace:disable-no-dependent-modules';
+
     /**
      * The console command description.
      */
@@ -34,8 +35,8 @@ class DisableUnecessaryModulesCommand extends Command
     {
         $modules = Module::all();
         collect($modules)->each(function ($module) {
-            if (!in_array($module, ['Workspace', 'App', 'Chat', 'DBMap', 'Permission', 'Project', 'Task', 'View'])) {
-                Artisan::call('module:disable ' . $module);
+            if (! in_array($module, ['Workspace', 'App', 'Chat', 'DBMap', 'Permission', 'Project', 'Task', 'View'])) {
+                Artisan::call('module:disable '.$module);
             }
         });
     }

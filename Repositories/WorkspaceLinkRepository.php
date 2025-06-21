@@ -8,7 +8,9 @@ use Modules\Workspace\Models\WorkspaceLinkModel;
 
 /**
  * @author Davi Menezes(davimenezes.dev@gmail.com)
+ *
  * @link https://github.com/DaviMenezes
+ *
  * @method self obj()
  * @method WorkspaceLinkModel model()
  * @method WorkspaceLinkEntityModel find($id)
@@ -20,7 +22,7 @@ use Modules\Workspace\Models\WorkspaceLinkModel;
 class WorkspaceLinkRepository extends BaseRepository
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function modelClass(): string
     {
