@@ -12,7 +12,6 @@ class WorkspaceUserObserver
      */
     public function created(User $user): void
     {
-        dd('created');
         /** @var WorkspaceModel $w */
         $w = WorkspaceModel::query()->create([
             'name' => trans('My workspace'),
