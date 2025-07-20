@@ -4,7 +4,6 @@ namespace Modules\Workspace\Entities\WorkspaceParticipant;
 
 use Modules\Base\Entities\BaseEntityModel;
 use Modules\Workspace\Models\WorkspaceParticipantModel;
-use Modules\Workspace\Repositories\WorkspaceParticipantRepository;
 
 /**
  * @author Davi Menezes (davimenezes.dev@gmail.com)
@@ -16,14 +15,8 @@ use Modules\Workspace\Repositories\WorkspaceParticipantRepository;
  * @method self save()
  * @method static self new()
  * @method static self props($alias = null, $force = null)
- * @method WorkspaceParticipantRepository repository()
  */
 class WorkspaceParticipantEntityModel extends BaseEntityModel
 {
     use WorkspaceParticipantProps;
-
-    protected function repositoryClass(): string
-    {
-        return WorkspaceParticipantRepository::class;
-    }
 }
