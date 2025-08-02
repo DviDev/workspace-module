@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Workspace\App\Observers;
+namespace Modules\Workspace\Observers;
 
 use App\Models\User;
 use Modules\Workspace\Models\WorkspaceModel;

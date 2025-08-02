@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Workspace\App\Console;
+namespace Modules\Workspace\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
