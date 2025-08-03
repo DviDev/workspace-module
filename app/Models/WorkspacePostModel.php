@@ -4,11 +4,11 @@ namespace Modules\Workspace\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\Base\Contracts\BaseModel;
 use Modules\Base\Factories\BaseFactory;
-use Modules\Base\Models\BaseModel;
-use Modules\Link\Models\LinkModel;
-use Modules\Workspace\Entities\WorkspaceLink\WorkspaceLinkEntityModel;
-use Modules\Workspace\Entities\WorkspaceLink\WorkspaceLinkProps;
+use Modules\Post\Models\PostModel;
+use Modules\Workspace\Entities\WorkspacePost\WorkspacePostEntityModel;
+use Modules\Workspace\Entities\WorkspacePost\WorkspacePostProps;
 
 /**
  * @author Davi Menezes (davimenezes.dev@gmail.com)
@@ -16,31 +16,31 @@ use Modules\Workspace\Entities\WorkspaceLink\WorkspaceLinkProps;
  * @link https://github.com/DaviMenezes
  *
  * @property-read WorkspaceModel $workspace
- * @property-read LinkModel $link
+ * @property-read PostModel $post
  *
- * @method WorkspaceLinkEntityModel toEntity()
+ * @method WorkspacePostEntityModel toEntity()
  */
-class WorkspaceLinkModel extends BaseModel
+class WorkspacePostModel extends BaseModel
 {
     use HasFactory;
-    use WorkspaceLinkProps;
+    use WorkspacePostProps;
 
     public function modelEntity(): string
     {
-        return WorkspaceLinkEntityModel::class;
+        return WorkspacePostEntityModel::class;
     }
 
     protected static function newFactory(): BaseFactory
     {
         return new class extends BaseFactory
         {
-            protected $model = WorkspaceLinkModel::class;
+            protected $model = WorkspacePostModel::class;
         };
     }
 
     public static function table($alias = null): string
     {
-        return self::dbTable('workspace_links', $alias);
+        return self::dbTable('workspace_posts', $alias);
     }
 
     public function workspace(): BelongsTo
@@ -48,8 +48,8 @@ class WorkspaceLinkModel extends BaseModel
         return $this->belongsTo(WorkspaceModel::class, 'workspace_id');
     }
 
-    public function link(): BelongsTo
+    public function post(): BelongsTo
     {
-        return $this->belongsTo(LinkModel::class, 'link_id');
+        return $this->belongsTo(PostModel::class, 'post_id');
     }
 }

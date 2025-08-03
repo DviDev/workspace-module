@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Workspace\App\Listeners;
+namespace Modules\Workspace\Listeners;
 
 use Modules\Person\Events\UserCreatedEvent;
 use Modules\Workspace\Models\WorkspaceModel;

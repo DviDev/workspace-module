@@ -6,9 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Modules\Base\Events\BaseSeederInitialIndependentDataEvent;
 use Modules\DBMap\Events\ScanTableEvent;
-use Modules\Workspace\App\Console\DisableUnecessaryModulesCommand;
-use Modules\Workspace\App\Console\TestWorkspaceModuleCommand;
-use Modules\Workspace\App\Providers\WorkspaceEventServiceProvider;
+use Modules\Workspace\Console\DisableUnecessaryModulesCommand;
+use Modules\Workspace\Console\TestWorkspaceModuleCommand;
 use Modules\Workspace\Http\Livewire\Form\WorkspaceForm;
 use Modules\Workspace\Listeners\WorkspaceInitialIndependentSeederDataListener;
 use Modules\Workspace\Listeners\WorkspaceScanTableListener;
@@ -35,7 +34,7 @@ class WorkspaceServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
-        $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        $this->loadMigrationsFrom(module_path($this->moduleName, 'database/Migrations'));
 
     }
 
@@ -66,10 +65,10 @@ class WorkspaceServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            module_path($this->moduleName, 'Config/config.php') => config_path($this->moduleNameLower.'.php'),
+            module_path($this->moduleName, 'config/config.php') => config_path($this->moduleNameLower.'.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            module_path($this->moduleName, 'Config/config.php'), $this->moduleNameLower
+            module_path($this->moduleName, 'config/config.php'), $this->moduleNameLower
         );
     }
 
@@ -82,7 +81,7 @@ class WorkspaceServiceProvider extends ServiceProvider
     {
         $viewPath = resource_path('views/modules/'.$this->moduleNameLower);
 
-        $sourcePath = module_path($this->moduleName, 'Resources/views');
+        $sourcePath = module_path($this->moduleName, 'resources/views');
 
         $this->publishes([
             $sourcePath => $viewPath,
@@ -103,7 +102,7 @@ class WorkspaceServiceProvider extends ServiceProvider
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, $this->moduleNameLower);
         } else {
-            $this->loadTranslationsFrom(module_path($this->moduleName, 'Resources/lang'), $this->moduleNameLower);
+            $this->loadTranslationsFrom(module_path($this->moduleName, 'resources/lang'), $this->moduleNameLower);
         }
     }
 

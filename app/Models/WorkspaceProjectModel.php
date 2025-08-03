@@ -4,8 +4,8 @@ namespace Modules\Workspace\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\Base\Contracts\BaseModel;
 use Modules\Base\Factories\BaseFactory;
-use Modules\Base\Models\BaseModel;
 use Modules\Project\Models\ProjectModel;
 use Modules\Workspace\Entities\WorkspaceProject\WorkspaceProjectEntityModel;
 use Modules\Workspace\Entities\WorkspaceProject\WorkspaceProjectProps;
