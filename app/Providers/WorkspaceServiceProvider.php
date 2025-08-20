@@ -6,9 +6,11 @@ use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Modules\Base\Events\BaseSeederInitialIndependentDataEvent;
 use Modules\DBMap\Events\ScanTableEvent;
+use Modules\View\Events\ElementPropertyCreatedEvent;
 use Modules\Workspace\Console\DisableUnecessaryModulesCommand;
 use Modules\Workspace\Console\TestWorkspaceModuleCommand;
 use Modules\Workspace\Http\Livewire\Form\WorkspaceForm;
+use Modules\Workspace\Listeners\TranslateViewElementPropertiesListener;
 use Modules\Workspace\Listeners\WorkspaceInitialIndependentSeederDataListener;
 use Modules\Workspace\Listeners\WorkspaceScanTableListener;
 
@@ -52,6 +54,7 @@ class WorkspaceServiceProvider extends ServiceProvider
 
         \Event::listen(BaseSeederInitialIndependentDataEvent::class, WorkspaceInitialIndependentSeederDataListener::class);
         \Event::listen(ScanTableEvent::class, WorkspaceScanTableListener::class);
+        \Event::listen(ElementPropertyCreatedEvent::class, TranslateViewElementPropertiesListener::class);
 
         $this->commands(TestWorkspaceModuleCommand::class);
         $this->commands(DisableUnecessaryModulesCommand::class);
@@ -101,8 +104,10 @@ class WorkspaceServiceProvider extends ServiceProvider
 
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, $this->moduleNameLower);
+            $this->loadJsonTranslationsFrom($langPath);
         } else {
-            $this->loadTranslationsFrom(module_path($this->moduleName, 'resources/lang'), $this->moduleNameLower);
+            $this->loadTranslationsFrom(module_path($this->moduleName, 'lang'), $this->moduleNameLower);
+            $this->loadJsonTranslationsFrom(module_path($this->moduleName, 'lang'));
         }
     }
 
