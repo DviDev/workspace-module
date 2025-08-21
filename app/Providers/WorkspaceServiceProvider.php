@@ -13,6 +13,13 @@ use Modules\Workspace\Http\Livewire\Form\WorkspaceForm;
 use Modules\Workspace\Listeners\TranslateViewElementPropertiesListener;
 use Modules\Workspace\Listeners\WorkspaceInitialIndependentSeederDataListener;
 use Modules\Workspace\Listeners\WorkspaceScanTableListener;
+use Illuminate\Support\Facades\Event;
+use Modules\Person\Events\UserCreatedEvent;
+use Modules\Project\Events\CreateMenuItemsEvent;
+use Modules\Project\Events\EntityAttributesCreatedEvent;
+use Modules\Workspace\Listeners\CreateMenuItemsListener;
+use Modules\Workspace\Listeners\DefineSearchableAttributes;
+use Modules\Workspace\Listeners\WorkspaceUserCreatedListener;
 
 class WorkspaceServiceProvider extends ServiceProvider
 {
@@ -114,9 +121,14 @@ class WorkspaceServiceProvider extends ServiceProvider
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(WorkspaceEventServiceProvider::class);
 
-        \Event::listen(BaseSeederInitialIndependentDataEvent::class, WorkspaceInitialIndependentSeederDataListener::class);
-        \Event::listen(ScanTableEvent::class, WorkspaceScanTableListener::class);
-        \Event::listen(ElementPropertyCreatedEvent::class, TranslateViewElementPropertiesListener::class);
+        Event::listen(BaseSeederInitialIndependentDataEvent::class, WorkspaceInitialIndependentSeederDataListener::class);
+        Event::listen(ScanTableEvent::class, WorkspaceScanTableListener::class);
+        Event::listen(ElementPropertyCreatedEvent::class, TranslateViewElementPropertiesListener::class);
+
+        Event::listen(UserCreatedEvent::class, WorkspaceUserCreatedListener::class);
+        Event::listen(BaseSeederInitialIndependentDataEvent::class, WorkspaceInitialIndependentSeederDataListener::class);
+        Event::listen(CreateMenuItemsEvent::class, CreateMenuItemsListener::class);
+        Event::listen(EntityAttributesCreatedEvent::class, DefineSearchableAttributes::class);
 
         $this->commands(TestWorkspaceModuleCommand::class);
         $this->commands(DisableUnecessaryModulesCommand::class);
