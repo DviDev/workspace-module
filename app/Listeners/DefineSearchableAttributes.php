@@ -3,7 +3,7 @@
 namespace Modules\Workspace\Listeners;
 
 use Modules\Project\Events\EntityAttributesCreatedEvent;
-use Modules\Project\Models\ProjectEntityAttributeModel;
+use Modules\Project\Models\ProjectModuleEntityAttributeModel;
 use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
 use Modules\Workspace\Models\WorkspaceModel;
 
@@ -23,7 +23,7 @@ class DefineSearchableAttributes
         }
     }
 
-    protected function default(ProjectEntityAttributeModel $attribute): void
+    protected function default(ProjectModuleEntityAttributeModel $attribute): void
     {
         if ($this->event->entity->name !== WorkspaceModel::table()) {
             return;
