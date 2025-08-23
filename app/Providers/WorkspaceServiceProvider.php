@@ -2,23 +2,23 @@
 
 namespace Modules\Workspace\Providers;
 
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Modules\Base\Events\BaseSeederInitialIndependentDataEvent;
 use Modules\DBMap\Events\ScanTableEvent;
+use Modules\Person\Events\UserCreatedEvent;
+use Modules\Project\Events\CreateMenuItemsEvent;
+use Modules\View\Events\DefineSearchableAttributesEvent;
 use Modules\View\Events\ElementPropertyCreatedEvent;
 use Modules\Workspace\Console\DisableUnecessaryModulesCommand;
 use Modules\Workspace\Console\TestWorkspaceModuleCommand;
 use Modules\Workspace\Http\Livewire\Form\WorkspaceForm;
+use Modules\Workspace\Listeners\CreateMenuItemsListener;
+use Modules\Workspace\Listeners\DefineSearchableAttributes;
 use Modules\Workspace\Listeners\TranslateViewElementPropertiesListener;
 use Modules\Workspace\Listeners\WorkspaceInitialIndependentSeederDataListener;
 use Modules\Workspace\Listeners\WorkspaceScanTableListener;
-use Illuminate\Support\Facades\Event;
-use Modules\Person\Events\UserCreatedEvent;
-use Modules\Project\Events\CreateMenuItemsEvent;
-use Modules\Project\Events\EntityAttributesCreatedEvent;
-use Modules\Workspace\Listeners\CreateMenuItemsListener;
-use Modules\Workspace\Listeners\DefineSearchableAttributes;
 use Modules\Workspace\Listeners\WorkspaceUserCreatedListener;
 
 class WorkspaceServiceProvider extends ServiceProvider
@@ -27,7 +27,6 @@ class WorkspaceServiceProvider extends ServiceProvider
      * @var string
      */
     protected $moduleName = 'Workspace';
-
     /**
      * @var string
      */
@@ -128,7 +127,7 @@ class WorkspaceServiceProvider extends ServiceProvider
         Event::listen(UserCreatedEvent::class, WorkspaceUserCreatedListener::class);
         Event::listen(BaseSeederInitialIndependentDataEvent::class, WorkspaceInitialIndependentSeederDataListener::class);
         Event::listen(CreateMenuItemsEvent::class, CreateMenuItemsListener::class);
-        Event::listen(EntityAttributesCreatedEvent::class, DefineSearchableAttributes::class);
+        Event::listen(DefineSearchableAttributesEvent::class, DefineSearchableAttributes::class);
 
         $this->commands(TestWorkspaceModuleCommand::class);
         $this->commands(DisableUnecessaryModulesCommand::class);
