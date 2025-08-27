@@ -3,8 +3,8 @@
 namespace Modules\Workspace\Providers;
 
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
+use Modules\Base\Contracts\BaseServiceProviderContract;
 use Modules\Base\Events\BaseSeederInitialIndependentDataEvent;
 use Modules\DBMap\Events\ScanTableEvent;
 use Modules\Person\Events\UserCreatedEvent;
@@ -21,7 +21,7 @@ use Modules\Workspace\Listeners\WorkspaceInitialIndependentSeederDataListener;
 use Modules\Workspace\Listeners\WorkspaceScanTableListener;
 use Modules\Workspace\Listeners\WorkspaceUserCreatedListener;
 
-class WorkspaceServiceProvider extends ServiceProvider
+class WorkspaceServiceProvider extends BaseServiceProviderContract
 {
     /**
      * @var string
@@ -32,105 +32,28 @@ class WorkspaceServiceProvider extends ServiceProvider
      */
     protected $moduleNameLower = 'workspace';
 
-    /**
-     * Boot the application events.
-     *
-     * @return void
-     */
-    public function boot()
+    protected function registerEvents(): void
     {
-        $this->registerTranslations();
-        $this->registerConfig();
-        $this->registerViews();
-        $this->loadMigrationsFrom(module_path($this->moduleName, 'database/Migrations'));
-    }
-
-    /**
-     * Register translations.
-     *
-     * @return void
-     */
-    public function registerTranslations()
-    {
-        $langPath = resource_path('lang/modules/' . $this->moduleNameLower);
-
-        if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, $this->moduleNameLower);
-            $this->loadJsonTranslationsFrom($langPath);
-            return;
-        }
-        $this->loadTranslationsFrom(module_path($this->moduleName, 'lang'), $this->moduleNameLower);
-        $this->loadJsonTranslationsFrom(module_path($this->moduleName, 'lang'));
-    }
-
-    /**
-     * Register config.
-     *
-     * @return void
-     */
-    protected function registerConfig()
-    {
-        $this->publishes([
-            module_path($this->moduleName, 'config/config.php') => config_path($this->moduleNameLower . '.php'),
-        ], 'config');
-        $this->mergeConfigFrom(
-            module_path($this->moduleName, 'config/config.php'), $this->moduleNameLower
-        );
-    }
-
-    /**
-     * Register views.
-     *
-     * @return void
-     */
-    public function registerViews()
-    {
-        $viewPath = resource_path('views/modules/' . $this->moduleNameLower);
-
-        $sourcePath = module_path($this->moduleName, 'resources/views');
-
-        $this->publishes([
-            $sourcePath => $viewPath,
-        ], ['views', $this->moduleNameLower . '-module-views']);
-
-        $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), [$sourcePath]), $this->moduleNameLower);
-    }
-
-    private function getPublishableViewPaths(): array
-    {
-        $paths = [];
-        foreach (config('view.paths') as $path) {
-            if (is_dir($path . '/modules/' . $this->moduleNameLower)) {
-                $paths[] = $path . '/modules/' . $this->moduleNameLower;
-            }
-        }
-
-        return $paths;
-    }
-
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        Livewire::component('workspace::form', WorkspaceForm::class);
-
-        $this->app->register(RouteServiceProvider::class);
-        $this->app->register(WorkspaceEventServiceProvider::class);
-
         Event::listen(BaseSeederInitialIndependentDataEvent::class, WorkspaceInitialIndependentSeederDataListener::class);
         Event::listen(ScanTableEvent::class, WorkspaceScanTableListener::class);
         Event::listen(ElementPropertyCreatedEvent::class, TranslateViewElementPropertiesListener::class);
 
         Event::listen(UserCreatedEvent::class, WorkspaceUserCreatedListener::class);
-        Event::listen(BaseSeederInitialIndependentDataEvent::class, WorkspaceInitialIndependentSeederDataListener::class);
         Event::listen(CreateMenuItemsEvent::class, CreateMenuItemsListener::class);
         Event::listen(DefineSearchableAttributesEvent::class, DefineSearchableAttributes::class);
+    }
 
-        $this->commands(TestWorkspaceModuleCommand::class);
-        $this->commands(DisableUnecessaryModulesCommand::class);
+    protected function registerCommands(): void
+    {
+        $this->commands([
+            TestWorkspaceModuleCommand::class,
+            DisableUnecessaryModulesCommand::class,
+        ]);
+    }
+
+    protected function registerComponents(): void
+    {
+        Livewire::component('workspace::form', WorkspaceForm::class);
     }
 
     /**
@@ -138,8 +61,28 @@ class WorkspaceServiceProvider extends ServiceProvider
      *
      * @return array
      */
-    public function provides()
+    public function provides(): array
     {
-        return [];
+        return [
+            RouteServiceProvider::class,
+            WorkspaceEventServiceProvider::class,
+        ];
+    }
+
+    public function getModuleName(): string
+    {
+        return 'Workspace';
+    }
+
+    public function getModuleNameLower(): string
+    {
+        return 'workspace';
+    }
+
+    public function requireModules(): array
+    {
+        return [
+            'Chat',
+        ];
     }
 }
