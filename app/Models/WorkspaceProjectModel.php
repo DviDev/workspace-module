@@ -19,7 +19,6 @@ use Modules\Workspace\Entities\WorkspaceProject\WorkspaceProjectProps;
  */
 class WorkspaceProjectModel extends BaseModel
 {
-    use HasFactory;
     use WorkspaceProjectProps;
 
     public function modelEntity(): string
@@ -29,8 +28,7 @@ class WorkspaceProjectModel extends BaseModel
 
     protected static function newFactory(): BaseFactory
     {
-        return new class extends BaseFactory
-        {
+        return new class extends BaseFactory {
             protected $model = WorkspaceProjectModel::class;
         };
     }

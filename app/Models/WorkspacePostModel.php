@@ -22,7 +22,6 @@ use Modules\Workspace\Entities\WorkspacePost\WorkspacePostProps;
  */
 class WorkspacePostModel extends BaseModel
 {
-    use HasFactory;
     use WorkspacePostProps;
 
     public function modelEntity(): string
@@ -32,8 +31,7 @@ class WorkspacePostModel extends BaseModel
 
     protected static function newFactory(): BaseFactory
     {
-        return new class extends BaseFactory
-        {
+        return new class extends BaseFactory {
             protected $model = WorkspacePostModel::class;
         };
     }

@@ -22,7 +22,6 @@ use Modules\Workspace\Entities\WorkspaceParticipant\WorkspaceParticipantProps;
  */
 class WorkspaceParticipantModel extends BaseModel
 {
-    use HasFactory;
     use WorkspaceParticipantProps;
 
     public function modelEntity(): string
@@ -32,8 +31,7 @@ class WorkspaceParticipantModel extends BaseModel
 
     protected static function newFactory(): BaseFactory
     {
-        return new class extends BaseFactory
-        {
+        return new class extends BaseFactory {
             protected $model = WorkspaceParticipantModel::class;
         };
     }

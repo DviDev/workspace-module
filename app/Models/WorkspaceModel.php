@@ -36,7 +36,7 @@ use Modules\Workspace\Entities\Workspace\WorkspaceProps;
 class WorkspaceModel extends BaseModel
 {
     use BelongsToUser;
-    use HasFactory;
+
     use WorkspaceProps;
 
     protected $with = ['user'];
@@ -48,8 +48,7 @@ class WorkspaceModel extends BaseModel
 
     protected static function newFactory(): BaseFactory
     {
-        return new class extends BaseFactory
-        {
+        return new class extends BaseFactory {
             protected $model = WorkspaceModel::class;
 
             protected function callAfterCreating(Collection $instances, ?Model $parent = null): void

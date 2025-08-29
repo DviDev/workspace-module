@@ -18,7 +18,6 @@ use Modules\Workspace\Entities\WorkspaceTag\WorkspaceTagProps;
  */
 class WorkspaceTagModel extends BaseModel
 {
-    use HasFactory;
     use WorkspaceTagProps;
 
     public function modelEntity(): string
@@ -28,8 +27,7 @@ class WorkspaceTagModel extends BaseModel
 
     protected static function newFactory(): BaseFactory
     {
-        return new class extends BaseFactory
-        {
+        return new class extends BaseFactory {
             protected $model = WorkspaceTagModel::class;
         };
     }
