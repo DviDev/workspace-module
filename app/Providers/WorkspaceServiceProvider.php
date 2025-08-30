@@ -32,30 +32,6 @@ class WorkspaceServiceProvider extends BaseServiceProviderContract
      */
     protected $moduleNameLower = 'workspace';
 
-    protected function registerEvents(): void
-    {
-        Event::listen(BaseSeederInitialIndependentDataEvent::class, WorkspaceInitialIndependentSeederDataListener::class);
-        Event::listen(ScanTableEvent::class, WorkspaceScanTableListener::class);
-        Event::listen(ElementPropertyCreatedEvent::class, TranslateViewElementPropertiesListener::class);
-
-        Event::listen(UserCreatedEvent::class, WorkspaceUserCreatedListener::class);
-        Event::listen(CreateMenuItemsEvent::class, CreateMenuItemsListener::class);
-        Event::listen(DefineSearchableAttributesEvent::class, DefineSearchableAttributes::class);
-    }
-
-    protected function registerCommands(): void
-    {
-        $this->commands([
-            TestWorkspaceModuleCommand::class,
-            DisableUnecessaryModulesCommand::class,
-        ]);
-    }
-
-    protected function registerComponents(): void
-    {
-        Livewire::component('workspace::form', WorkspaceForm::class);
-    }
-
     /**
      * Get the services provided by the provider.
      *
@@ -84,5 +60,29 @@ class WorkspaceServiceProvider extends BaseServiceProviderContract
         return [
             'Chat',
         ];
+    }
+
+    protected function registerEvents(): void
+    {
+        Event::listen(BaseSeederInitialIndependentDataEvent::class, WorkspaceInitialIndependentSeederDataListener::class);
+        Event::listen(ScanTableEvent::class, WorkspaceScanTableListener::class);
+        Event::listen(ElementPropertyCreatedEvent::class, TranslateViewElementPropertiesListener::class);
+
+        Event::listen(UserCreatedEvent::class, WorkspaceUserCreatedListener::class);
+        Event::listen(CreateMenuItemsEvent::class, CreateMenuItemsListener::class);
+        Event::listen(DefineSearchableAttributesEvent::class, DefineSearchableAttributes::class);
+    }
+
+    protected function registerCommands(): void
+    {
+        $this->commands([
+            TestWorkspaceModuleCommand::class,
+            DisableUnecessaryModulesCommand::class,
+        ]);
+    }
+
+    protected function registerComponents(): void
+    {
+        Livewire::component('workspace::form', WorkspaceForm::class);
     }
 }
