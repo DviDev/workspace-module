@@ -13,11 +13,11 @@ class WorkspaceUserCreatedListener
     public function handle(UserCreatedEvent $event): void
     {
         /** @var WorkspaceModel $workspace */
-        $name = $event->user->name . "'s " . str(__('personal'))->ucfirst();
+        $name = $event->user->name."'s ".str(__('personal'))->ucfirst();
         $workspace = WorkspaceModel::query()->create([
             'name' => $name,
             'user_id' => $event->user->id,
-            'description' => 'via ' . __CLASS__,
+            'description' => 'via '.__CLASS__,
         ]);
         $workspace->participants()->sync([$event->user->id]);
     }

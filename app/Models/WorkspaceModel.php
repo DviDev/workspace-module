@@ -3,7 +3,6 @@
 namespace Modules\Workspace\Models;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -36,7 +35,6 @@ use Modules\Workspace\Entities\Workspace\WorkspaceProps;
 class WorkspaceModel extends BaseModel
 {
     use BelongsToUser;
-
     use WorkspaceProps;
 
     protected $with = ['user'];
@@ -48,7 +46,8 @@ class WorkspaceModel extends BaseModel
 
     protected static function newFactory(): BaseFactory
     {
-        return new class extends BaseFactory {
+        return new class extends BaseFactory
+        {
             protected $model = WorkspaceModel::class;
 
             protected function callAfterCreating(Collection $instances, ?Model $parent = null): void

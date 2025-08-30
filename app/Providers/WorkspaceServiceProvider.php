@@ -27,6 +27,7 @@ class WorkspaceServiceProvider extends BaseServiceProviderContract
      * @var string
      */
     protected $moduleName = 'Workspace';
+
     /**
      * @var string
      */
@@ -34,8 +35,6 @@ class WorkspaceServiceProvider extends BaseServiceProviderContract
 
     /**
      * Get the services provided by the provider.
-     *
-     * @return array
      */
     public function provides(): array
     {
