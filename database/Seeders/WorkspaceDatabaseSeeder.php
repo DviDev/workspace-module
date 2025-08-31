@@ -18,8 +18,8 @@ class WorkspaceDatabaseSeeder extends BaseSeeder
 
         $this->commandWarn(__CLASS__, '🌱 seeding');
 
-        // $this->call(WorkspaceTableSeeder::class);
-        // ...
+        $this->call(WorkspaceTableSeeder::class);
+
         $this->commandInfo(__CLASS__, '🟢 done');
     }
 }
