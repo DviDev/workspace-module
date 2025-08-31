@@ -2,7 +2,6 @@
 
 namespace Modules\Workspace\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\Base\Contracts\BaseModel;
 use Modules\Base\Factories\BaseFactory;
@@ -19,7 +18,6 @@ use Modules\Workspace\Entities\WorkspaceProject\WorkspaceProjectProps;
  */
 class WorkspaceProjectModel extends BaseModel
 {
-    use HasFactory;
     use WorkspaceProjectProps;
 
     public function modelEntity(): string

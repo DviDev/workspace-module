@@ -2,7 +2,6 @@
 
 namespace Modules\Workspace\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\Base\Contracts\BaseModel;
 use Modules\Base\Factories\BaseFactory;
@@ -22,7 +21,6 @@ use Modules\Workspace\Entities\WorkspacePost\WorkspacePostProps;
  */
 class WorkspacePostModel extends BaseModel
 {
-    use HasFactory;
     use WorkspacePostProps;
 
     public function modelEntity(): string

@@ -3,5 +3,5 @@
 return [
     'id' => 'id',
     'workspace_id' => 'workspace',
-    'post_id' => 'post'
+    'post_id' => 'post',
 ];

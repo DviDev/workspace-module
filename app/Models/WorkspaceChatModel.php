@@ -2,7 +2,6 @@
 
 namespace Modules\Workspace\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\Base\Contracts\BaseModel;
 use Modules\Base\Factories\BaseFactory;
@@ -22,7 +21,6 @@ use Modules\Workspace\Entities\WorkspaceChat\WorkspaceChatProps;
  */
 class WorkspaceChatModel extends BaseModel
 {
-    use HasFactory;
     use WorkspaceChatProps;
 
     public function modelEntity(): string

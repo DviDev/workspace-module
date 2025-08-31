@@ -3,7 +3,6 @@
 namespace Modules\Workspace\Models;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\Base\Contracts\BaseModel;
 use Modules\Base\Factories\BaseFactory;
@@ -22,7 +21,6 @@ use Modules\Workspace\Entities\WorkspaceParticipant\WorkspaceParticipantProps;
  */
 class WorkspaceParticipantModel extends BaseModel
 {
-    use HasFactory;
     use WorkspaceParticipantProps;
 
     public function modelEntity(): string
