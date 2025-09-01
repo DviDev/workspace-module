@@ -16,8 +16,8 @@ use Modules\Workspace\Console\TestWorkspaceModuleCommand;
 use Modules\Workspace\Http\Livewire\Form\WorkspaceForm;
 use Modules\Workspace\Listeners\CreateMenuItemsListener;
 use Modules\Workspace\Listeners\DefineSearchableAttributes;
+use Modules\Workspace\Listeners\SeederInitialIndependentSeederDataWorkspaceListener;
 use Modules\Workspace\Listeners\TranslateViewElementPropertiesListener;
-use Modules\Workspace\Listeners\WorkspaceInitialIndependentSeederDataListener;
 use Modules\Workspace\Listeners\WorkspaceScanTableListener;
 use Modules\Workspace\Listeners\WorkspaceUserCreatedListener;
 
@@ -63,7 +63,7 @@ class WorkspaceServiceProvider extends BaseServiceProviderContract
 
     protected function registerEvents(): void
     {
-        Event::listen(BaseSeederInitialIndependentDataEvent::class, WorkspaceInitialIndependentSeederDataListener::class);
+        Event::listen(BaseSeederInitialIndependentDataEvent::class, SeederInitialIndependentSeederDataWorkspaceListener::class);
         Event::listen(ScanTableEvent::class, WorkspaceScanTableListener::class);
         Event::listen(ElementPropertyCreatedEvent::class, TranslateViewElementPropertiesListener::class);
 
