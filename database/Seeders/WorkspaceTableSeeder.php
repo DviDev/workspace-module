@@ -38,8 +38,10 @@ class WorkspaceTableSeeder extends BaseSeeder
                     ]);
                 $modelKeys = User::factory(2)
                     ->sequence(...$persons)
-                    ->create();
-                $workspace->participants()->attach([$workspace->user_id, ...$modelKeys]);
+                    ->create()->modelKeys();
+                $workspace->participants()->attach([
+                    $workspace->user_id, ...$modelKeys,
+                ]);
             })
             ->create();
 
