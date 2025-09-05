@@ -10,7 +10,7 @@ use Modules\DBMap\Events\ScanTableEvent;
 use Modules\Person\Events\UserCreatedEvent;
 use Modules\Project\Events\CreateMenuItemsEvent;
 use Modules\View\Events\DefineSearchableAttributesEvent;
-use Modules\View\Events\ElementPropertyCreatedEvent;
+use Modules\View\Events\ElementPropertyCreatingEvent;
 use Modules\Workspace\Console\DisableUnecessaryModulesCommand;
 use Modules\Workspace\Console\TestWorkspaceModuleCommand;
 use Modules\Workspace\Http\Livewire\Form\WorkspaceForm;
@@ -65,7 +65,7 @@ class WorkspaceServiceProvider extends BaseServiceProviderContract
     {
         Event::listen(BaseSeederInitialIndependentDataEvent::class, SeederInitialIndependentSeederDataWorkspaceListener::class);
         Event::listen(ScanTableEvent::class, WorkspaceScanTableListener::class);
-        Event::listen(ElementPropertyCreatedEvent::class, TranslateViewElementPropertiesListener::class);
+        Event::listen(ElementPropertyCreatingEvent::class, TranslateViewElementPropertiesListener::class);
 
         Event::listen(UserCreatedEvent::class, WorkspaceUserCreatedListener::class);
         Event::listen(CreateMenuItemsEvent::class, CreateMenuItemsListener::class);
