@@ -57,7 +57,6 @@ class WorkspaceServiceProvider extends BaseServiceProviderContract
     public function requireModules(): array
     {
         return [
-            'Chat',
         ];
     }
 
