@@ -19,7 +19,7 @@ class WorkspaceTableSeeder extends BaseSeeder
     {
         Model::unguard();
 
-        $this->commandWarn(__CLASS__, '🌱 seeding');
+         $this->seeding();
 
         $superAdmin = User::query()->where('type_id', 2)->get()->first();
 
@@ -45,6 +45,6 @@ class WorkspaceTableSeeder extends BaseSeeder
             })
             ->create();
 
-        $this->commandInfo(__CLASS__, '🟢 done');
+        $this->done();
     }
 }
