@@ -8,11 +8,7 @@ use Nwidart\Modules\Facades\Module;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         if (! collect(Module::allEnabled())->contains('Chat')) {
@@ -34,11 +30,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
     public function down()
     {
         Schema::dropIfExists('workspace_chats');

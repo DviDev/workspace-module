@@ -7,11 +7,7 @@ use Modules\Workspace\Entities\WorkspaceTag\WorkspaceTagEntityModel;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('workspace_tags', function (Blueprint $table) {
@@ -30,11 +26,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
     public function down()
     {
         Schema::dropIfExists('workspace_tags');
