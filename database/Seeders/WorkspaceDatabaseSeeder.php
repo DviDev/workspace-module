@@ -16,7 +16,7 @@ class WorkspaceDatabaseSeeder extends BaseSeeder
     {
         Model::unguard();
 
-         $this->seeding();
+        $this->seeding();
 
         $this->call(WorkspaceTableSeeder::class);
 

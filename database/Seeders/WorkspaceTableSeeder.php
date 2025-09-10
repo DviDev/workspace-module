@@ -19,7 +19,7 @@ class WorkspaceTableSeeder extends BaseSeeder
     {
         Model::unguard();
 
-         $this->seeding();
+        $this->seeding();
 
         $superAdmin = User::query()->where('type_id', 2)->get()->first();
 
