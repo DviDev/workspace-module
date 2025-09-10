@@ -7,7 +7,6 @@ use Modules\Workspace\Entities\WorkspaceTag\WorkspaceTagEntityModel;
 
 return new class extends Migration
 {
-
     public function up()
     {
         Schema::create('workspace_tags', function (Blueprint $table) {
@@ -25,7 +24,6 @@ return new class extends Migration
             $table->timestamp($props->updated_at)->useCurrent();
         });
     }
-
 
     public function down()
     {

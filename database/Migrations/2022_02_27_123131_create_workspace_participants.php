@@ -7,7 +7,6 @@ use Modules\Workspace\Entities\WorkspaceParticipant\WorkspaceParticipantEntityMo
 
 return new class extends Migration
 {
-
     public function up()
     {
         Schema::create('workspace_participants', function (Blueprint $table) {
@@ -25,7 +24,6 @@ return new class extends Migration
             $table->timestamp($prop->deleted_at)->nullable();
         });
     }
-
 
     public function down()
     {

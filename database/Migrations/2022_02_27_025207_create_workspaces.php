@@ -7,7 +7,6 @@ use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
 
 return new class extends Migration
 {
-
     public function up()
     {
         Schema::create('workspaces', function (Blueprint $table) {
@@ -29,7 +28,6 @@ return new class extends Migration
             $table->timestamp($p->deleted_at)->nullable();
         });
     }
-
 
     public function down()
     {

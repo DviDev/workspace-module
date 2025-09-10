@@ -7,7 +7,6 @@ use Modules\Workspace\Entities\WorkspaceLink\WorkspaceLinkEntityModel;
 
 return new class extends Migration
 {
-
     public function up()
     {
         Schema::create('workspace_links', function (Blueprint $table) {
@@ -27,7 +26,6 @@ return new class extends Migration
             }
         });
     }
-
 
     public function down()
     {

@@ -7,7 +7,6 @@ use Modules\Workspace\Entities\WorkspacePost\WorkspacePostEntityModel;
 
 return new class extends Migration
 {
-
     public function up()
     {
         Schema::create('workspace_posts', function (Blueprint $table) {
@@ -24,7 +23,6 @@ return new class extends Migration
             }
         });
     }
-
 
     public function down()
     {

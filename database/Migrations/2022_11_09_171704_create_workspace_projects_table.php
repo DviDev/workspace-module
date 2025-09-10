@@ -8,7 +8,6 @@ use Nwidart\Modules\Facades\Module;
 
 return new class extends Migration
 {
-
     public function up()
     {
         if (! collect(Module::allEnabled())->contains('Project')) {
@@ -25,7 +24,6 @@ return new class extends Migration
                 ->cascadeOnUpdate()->restrictOnDelete();
         });
     }
-
 
     public function down()
     {

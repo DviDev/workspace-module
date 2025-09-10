@@ -8,7 +8,6 @@ use Nwidart\Modules\Facades\Module;
 
 return new class extends Migration
 {
-
     public function up()
     {
         if (! collect(Module::allEnabled())->contains('Chat')) {
@@ -29,7 +28,6 @@ return new class extends Migration
             $table->timestamp($p->deleted_at)->nullable();
         });
     }
-
 
     public function down()
     {
