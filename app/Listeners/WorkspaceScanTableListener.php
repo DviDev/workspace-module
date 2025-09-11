@@ -10,6 +10,6 @@ class WorkspaceScanTableListener implements ShouldQueue
 {
     public function handle(ScanTableEvent $event): void
     {
-        new ScanTableDomain()->scan('workspace');
+        (new ScanTableDomain)->scan('workspace');
     }
 }
