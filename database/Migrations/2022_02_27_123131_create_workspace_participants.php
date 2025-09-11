@@ -7,11 +7,6 @@ use Modules\Workspace\Entities\WorkspaceParticipant\WorkspaceParticipantEntityMo
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('workspace_participants', function (Blueprint $table) {
@@ -30,11 +25,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('workspace_participants');
