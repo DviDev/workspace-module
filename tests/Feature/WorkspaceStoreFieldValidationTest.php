@@ -5,14 +5,13 @@ namespace Modules\Workspace\Tests\Feature;
 use App\Models\User;
 use Modules\Workspace\Models\WorkspaceModel;
 use Tests\TestCase;
-use Modules\Workspace\Tests\Feature\WorkspaceValidations;
 
 class WorkspaceStoreFieldValidationTest extends TestCase
 {
     //    use DatabaseMigrations;
     //    use DatabaseTransactions;
     //    use RefreshDatabase;
-//    use WorkspaceValidations;
+    //    use WorkspaceValidations;
 
     protected WorkspaceModel $workspace;
 
