@@ -8,10 +8,6 @@ use Modules\Workspace\Models\WorkspaceLinkModel;
 
 class WorkspaceLinkTableTest extends BaseTest
 {
-    public function getEntityClass(): string|WorkspaceLinkEntityModel
-    {
-        return WorkspaceLinkEntityModel::class;
-    }
 
     public function getModelClass(): string|WorkspaceLinkModel
     {

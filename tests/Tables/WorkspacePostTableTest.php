@@ -8,10 +8,6 @@ use Modules\Workspace\Models\WorkspacePostModel;
 
 class WorkspacePostTableTest extends BaseTest
 {
-    public function getEntityClass(): string|WorkspacePostEntityModel
-    {
-        return WorkspacePostEntityModel::class;
-    }
 
     public function getModelClass(): string|WorkspacePostModel
     {

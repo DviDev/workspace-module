@@ -8,12 +8,6 @@ use Modules\Workspace\Models\WorkspaceModel;
 
 class WorkspaceTableTest extends BaseTest
 {
-    //    use RefreshDatabase;
-
-    public function getEntityClass(): string|WorkspaceEntityModel
-    {
-        return WorkspaceEntityModel::class;
-    }
 
     public function getModelClass(): string|WorkspaceModel
     {

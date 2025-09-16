@@ -8,12 +8,7 @@ use Modules\Workspace\Models\WorkspaceParticipantModel;
 
 class WorkspaceParticipantTableTest extends BaseTest
 {
-    //    use RefreshDatabase;
-    //    use DatabaseTransactions;
-    public function getEntityClass(): string|WorkspaceParticipantEntityModel
-    {
-        return WorkspaceParticipantEntityModel::class;
-    }
+
 
     public function getModelClass(): string|WorkspaceParticipantModel
     {
