@@ -22,5 +22,10 @@
             "Modules\\Workspace\\Database\\Seeders\\": "database/Seeders/",
             "Modules\\Workspace\\Database\\Migrations\\": "database/Migrations/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Workspace\\Tests\\": "tests/"
+        }
     }
 }

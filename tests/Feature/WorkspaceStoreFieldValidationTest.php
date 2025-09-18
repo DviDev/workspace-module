@@ -11,7 +11,7 @@ class WorkspaceStoreFieldValidationTest extends TestCase
     //    use DatabaseMigrations;
     //    use DatabaseTransactions;
     //    use RefreshDatabase;
-    use WorkspaceValidations;
+    //    use WorkspaceValidations;
 
     protected WorkspaceModel $workspace;
 
@@ -29,8 +29,6 @@ class WorkspaceStoreFieldValidationTest extends TestCase
         $workspace = WorkspaceModel::factory()->create();
         $this->post('workspace/form/'.$workspace->id)
             ->assertStatus(200);
-        //            ->assertStatus(404)
-        //            ->assertJsonFragment(['exception' => NotFoundHttpException::class]);
     }
 
     public function store_with_invalid_name()
