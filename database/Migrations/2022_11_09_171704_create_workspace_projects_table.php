@@ -15,7 +15,7 @@ return new class extends Migration
         if (! collect(Module::allEnabled())->contains('Project')) {
             return;
         }
-        Schema::create('workspace_projects', function (Blueprint $table) {
+        Schema::create('workspace_projects', function (Blueprint $table): void {
             $p = WorkspaceProjectEntityModel::props(null, true);
             $table->id();
             $table->foreignId($p->workspace_id)

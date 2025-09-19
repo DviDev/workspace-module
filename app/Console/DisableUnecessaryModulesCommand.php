@@ -36,7 +36,7 @@ final class DisableUnecessaryModulesCommand extends Command
     public function handle()
     {
         $modules = Module::all();
-        collect($modules)->each(function ($module) {
+        collect($modules)->each(function ($module): void {
             if (! in_array($module, ['Workspace', 'App', 'Chat', 'DBMap', 'Permission', 'Project', 'Task', 'View'])) {
                 Artisan::call('module:disable '.$module);
             }

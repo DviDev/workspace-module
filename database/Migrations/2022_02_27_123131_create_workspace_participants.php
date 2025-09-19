@@ -11,7 +11,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('workspace_participants', function (Blueprint $table) {
+        Schema::create('workspace_participants', function (Blueprint $table): void {
             $table->id();
 
             $prop = WorkspaceParticipantEntityModel::props(null, true);

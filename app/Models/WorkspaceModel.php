@@ -116,7 +116,7 @@ final class WorkspaceModel extends BaseModel
 
             protected function callAfterCreating(Collection $instances, ?Model $parent = null): void
             {
-                $instances->each(function (WorkspaceModel $model) {
+                $instances->each(function (WorkspaceModel $model): void {
                     $model->participants()->sync($model->user_id);
                 });
                 parent::callAfterCreating($instances, $parent);

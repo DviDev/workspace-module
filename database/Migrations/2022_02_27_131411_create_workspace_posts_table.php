@@ -11,7 +11,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('workspace_posts', function (Blueprint $table) {
+        Schema::create('workspace_posts', function (Blueprint $table): void {
             $p = WorkspacePostEntityModel::props(null, true);
             $table->id();
             $table->foreignId($p->workspace_id)

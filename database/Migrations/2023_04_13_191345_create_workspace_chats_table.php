@@ -15,7 +15,7 @@ return new class extends Migration
         if (! collect(Module::allEnabled())->contains('Chat')) {
             return;
         }
-        Schema::create('workspace_chats', function (Blueprint $table) {
+        Schema::create('workspace_chats', function (Blueprint $table): void {
             $p = WorkspaceChatEntityModel::props(null, true);
             $table->id();
             $table->foreignId($p->workspace_id)
