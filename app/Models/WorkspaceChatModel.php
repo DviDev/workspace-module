@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,13 +21,28 @@ use Modules\Workspace\Entities\WorkspaceChat\WorkspaceChatProps;
  *
  * @method WorkspaceChatEntityModel toEntity()
  */
-class WorkspaceChatModel extends BaseModel
+final class WorkspaceChatModel extends BaseModel
 {
     use WorkspaceChatProps;
+
+    public static function table($alias = null): string
+    {
+        return self::dbTable('workspace_chats', $alias);
+    }
 
     public function modelEntity(): string
     {
         return WorkspaceChatEntityModel::class;
+    }
+
+    public function workspace(): BelongsTo
+    {
+        return $this->belongsTo(self::class, 'workspace_id');
+    }
+
+    public function chat(): BelongsTo
+    {
+        return $this->belongsTo(ChatModel::class, 'chat_id');
     }
 
     protected static function newFactory(): BaseFactory
@@ -34,20 +51,5 @@ class WorkspaceChatModel extends BaseModel
         {
             protected $model = WorkspaceChatModel::class;
         };
-    }
-
-    public static function table($alias = null): string
-    {
-        return self::dbTable('workspace_chats', $alias);
-    }
-
-    public function workspace(): BelongsTo
-    {
-        return $this->belongsTo(WorkspaceChatModel::class, 'workspace_id');
-    }
-
-    public function chat(): BelongsTo
-    {
-        return $this->belongsTo(ChatModel::class, 'chat_id');
     }
 }

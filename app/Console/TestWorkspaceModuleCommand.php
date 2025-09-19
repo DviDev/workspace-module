@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Nwidart\Modules\Facades\Module;
 
-class TestWorkspaceModuleCommand extends Command
+final class TestWorkspaceModuleCommand extends Command
 {
     /**
      * The name and signature of the console command.

@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Tests\Tables;
 
 use Modules\Base\Services\Tests\BaseTest;
 use Modules\Workspace\Models\WorkspaceParticipantModel;
 
-class WorkspaceParticipantTableTest extends BaseTest
+final class WorkspaceParticipantTableTest extends BaseTest
 {
     public function getModelClass(): string|WorkspaceParticipantModel
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Console;
 
 use Illuminate\Console\Command;
@@ -8,7 +10,7 @@ use Nwidart\Modules\Facades\Module;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class DisableUnecessaryModulesCommand extends Command
+final class DisableUnecessaryModulesCommand extends Command
 {
     /**
      * The name and signature of the console command.

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Events;
 
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -7,7 +9,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class SearchableAttributesDefinedEvent
+final class SearchableAttributesDefinedEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

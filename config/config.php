@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'name' => 'Workspace',
     'SEED_WORKSPACE_CHATS_COUNT' => env('SEEDER_DEFAULT_', 3),

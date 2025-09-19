@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Entities\Workspace;
 
 use Modules\Base\Entities\BaseEntityModel;
@@ -16,7 +18,7 @@ use Modules\Workspace\Models\WorkspaceModel;
  * @method static self new()
  * @method static self props($alias = null, $force = null)
  */
-class WorkspaceEntityModel extends BaseEntityModel
+final class WorkspaceEntityModel extends BaseEntityModel
 {
     use WorkspaceProps;
 }

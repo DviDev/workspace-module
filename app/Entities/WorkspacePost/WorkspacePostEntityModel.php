@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Entities\WorkspacePost;
 
 use Modules\Base\Entities\BaseEntityModel;
@@ -16,7 +18,7 @@ use Modules\Workspace\Models\WorkspacePostModel;
  * @method static self new()
  * @method static self props($alias = null, $force = null)
  */
-class WorkspacePostEntityModel extends BaseEntityModel
+final class WorkspacePostEntityModel extends BaseEntityModel
 {
     use WorkspacePostProps;
 }

@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Modules\Workspace\Models\WorkspaceModel;
 
-class WorkspaceUpdateRequest extends FormRequest
+final class WorkspaceUpdateRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.

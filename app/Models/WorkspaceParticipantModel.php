@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Models;
 
 use App\Models\User;
@@ -19,26 +21,18 @@ use Modules\Workspace\Entities\WorkspaceParticipant\WorkspaceParticipantProps;
  *
  * @method WorkspaceParticipantEntityModel toEntity()
  */
-class WorkspaceParticipantModel extends BaseModel
+final class WorkspaceParticipantModel extends BaseModel
 {
     use WorkspaceParticipantProps;
-
-    public function modelEntity(): string
-    {
-        return WorkspaceParticipantEntityModel::class;
-    }
-
-    protected static function newFactory(): BaseFactory
-    {
-        return new class extends BaseFactory
-        {
-            protected $model = WorkspaceParticipantModel::class;
-        };
-    }
 
     public static function table($alias = null): string
     {
         return self::dbTable('workspace_participants', $alias);
+    }
+
+    public function modelEntity(): string
+    {
+        return WorkspaceParticipantEntityModel::class;
     }
 
     public function workspace(): BelongsTo
@@ -49,5 +43,13 @@ class WorkspaceParticipantModel extends BaseModel
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    protected static function newFactory(): BaseFactory
+    {
+        return new class extends BaseFactory
+        {
+            protected $model = WorkspaceParticipantModel::class;
+        };
     }
 }

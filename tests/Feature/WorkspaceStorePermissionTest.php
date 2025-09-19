@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
 use Modules\Workspace\Models\WorkspaceModel;

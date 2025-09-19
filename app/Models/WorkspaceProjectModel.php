@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,26 +18,18 @@ use Modules\Workspace\Entities\WorkspaceProject\WorkspaceProjectProps;
  *
  * @method WorkspaceProjectEntityModel toEntity()
  */
-class WorkspaceProjectModel extends BaseModel
+final class WorkspaceProjectModel extends BaseModel
 {
     use WorkspaceProjectProps;
-
-    public function modelEntity(): string
-    {
-        return WorkspaceProjectEntityModel::class;
-    }
-
-    protected static function newFactory(): BaseFactory
-    {
-        return new class extends BaseFactory
-        {
-            protected $model = WorkspaceProjectModel::class;
-        };
-    }
 
     public static function table($alias = null): string
     {
         return self::dbTable('workspace_projects', $alias);
+    }
+
+    public function modelEntity(): string
+    {
+        return WorkspaceProjectEntityModel::class;
     }
 
     public function workspace(): BelongsTo
@@ -46,5 +40,13 @@ class WorkspaceProjectModel extends BaseModel
     public function project(): BelongsTo
     {
         return $this->belongsTo(ProjectModel::class, 'project_id');
+    }
+
+    protected static function newFactory(): BaseFactory
+    {
+        return new class extends BaseFactory
+        {
+            protected $model = WorkspaceProjectModel::class;
+        };
     }
 }

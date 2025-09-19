@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Tests\Unit;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -8,7 +10,7 @@ use Modules\Workspace\Models\WorkspaceModel;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class WorkspaceDeleteFieldValidationTest extends TestCase
+final class WorkspaceDeleteFieldValidationTest extends TestCase
 {
     use DatabaseMigrations;
     use DatabaseTransactions;

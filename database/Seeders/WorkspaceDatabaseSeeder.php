@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Database\Seeders;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\Base\Database\Seeders\BaseSeeder;
 
-class WorkspaceDatabaseSeeder extends BaseSeeder
+final class WorkspaceDatabaseSeeder extends BaseSeeder
 {
     /**
      * Run the database seeds.

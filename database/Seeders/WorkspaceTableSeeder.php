@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Database\Seeders;
 
 use App\Models\User;
@@ -8,7 +10,7 @@ use Modules\Base\Database\Seeders\BaseSeeder;
 use Modules\Person\Models\PersonModel;
 use Modules\Workspace\Models\WorkspaceModel;
 
-class WorkspaceTableSeeder extends BaseSeeder
+final class WorkspaceTableSeeder extends BaseSeeder
 {
     /**
      * Run the database seeds.

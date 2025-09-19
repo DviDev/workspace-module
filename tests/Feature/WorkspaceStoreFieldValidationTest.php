@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Tests\Feature;
 
 use App\Models\User;
 use Modules\Workspace\Models\WorkspaceModel;
 use Tests\TestCase;
 
-class WorkspaceStoreFieldValidationTest extends TestCase
+final class WorkspaceStoreFieldValidationTest extends TestCase
 {
     //    use DatabaseMigrations;
     //    use DatabaseTransactions;

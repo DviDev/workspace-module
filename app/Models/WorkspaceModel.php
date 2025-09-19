@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Models;
 
 use App\Models\User;
@@ -33,38 +35,22 @@ use Modules\Workspace\Entities\Workspace\WorkspaceProps;
  *
  * @method WorkspaceEntityModel toEntity()
  */
-class WorkspaceModel extends BaseModel
+final class WorkspaceModel extends BaseModel
 {
     use BelongsToUser;
-    use WorkspaceProps;
     use SoftDeletes;
+    use WorkspaceProps;
 
     protected $with = ['user'];
-
-    public function modelEntity(): string
-    {
-        return WorkspaceEntityModel::class;
-    }
-
-    protected static function newFactory(): BaseFactory
-    {
-        return new class extends BaseFactory
-        {
-            protected $model = WorkspaceModel::class;
-
-            protected function callAfterCreating(Collection $instances, ?Model $parent = null): void
-            {
-                $instances->each(function (WorkspaceModel $model) {
-                    $model->participants()->sync($model->user_id);
-                });
-                parent::callAfterCreating($instances, $parent);
-            }
-        };
-    }
 
     public static function table($alias = null): string
     {
         return self::dbTable('workspaces', $alias);
+    }
+
+    public function modelEntity(): string
+    {
+        return WorkspaceEntityModel::class;
     }
 
     public function user(): BelongsTo
@@ -120,5 +106,21 @@ class WorkspaceModel extends BaseModel
     public function taskBoards(): HasMany
     {
         return $this->hasMany(TaskBoardModel::class, 'workspace_id');
+    }
+
+    protected static function newFactory(): BaseFactory
+    {
+        return new class extends BaseFactory
+        {
+            protected $model = WorkspaceModel::class;
+
+            protected function callAfterCreating(Collection $instances, ?Model $parent = null): void
+            {
+                $instances->each(function (WorkspaceModel $model) {
+                    $model->participants()->sync($model->user_id);
+                });
+                parent::callAfterCreating($instances, $parent);
+            }
+        };
     }
 }

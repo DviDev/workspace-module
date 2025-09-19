@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
@@ -9,7 +11,7 @@ use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
 use Modules\Workspace\Http\Requests\WorkspaceUpdateRequest;
 use Modules\Workspace\Models\WorkspaceModel;
 
-class WorkspaceController extends Controller
+final class WorkspaceController extends Controller
 {
     public function show(WorkspaceModel $workspace)
     {

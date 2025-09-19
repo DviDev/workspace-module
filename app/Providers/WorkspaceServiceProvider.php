@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Providers;
 
 use Illuminate\Support\Facades\Event;
@@ -21,7 +23,7 @@ use Modules\Workspace\Listeners\TranslateViewElementPropertiesListener;
 use Modules\Workspace\Listeners\WorkspaceScanTableListener;
 use Modules\Workspace\Listeners\WorkspaceUserCreatedListener;
 
-class WorkspaceServiceProvider extends BaseServiceProviderContract
+final class WorkspaceServiceProvider extends BaseServiceProviderContract
 {
     /**
      * @var string
