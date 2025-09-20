@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Observers;
 
 use App\Models\User;
 use Modules\Workspace\Models\WorkspaceModel;
 
-class WorkspaceUserObserver
+final class WorkspaceUserObserver
 {
     /**
      * Handle the WorkspaceUserObserver "created" event.

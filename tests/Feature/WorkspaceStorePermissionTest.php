@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
 use Modules\Workspace\Models\WorkspaceModel;
@@ -7,13 +9,13 @@ use Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);
 
-it('not allow unauthenticated user', function () {
+it('not allow unauthenticated user', function (): void {
     $p = WorkspaceEntityModel::props();
     $this->post(route('workspace.store'), [$p->parent_id => 10000])
         ->assertStatus(403);
 });
 
-it('allow auth user', function () {
+it('allow auth user', function (): void {
     $p = WorkspaceEntityModel::props();
     $arr = [
         $p->name => fake()->word(),
@@ -24,7 +26,7 @@ it('allow auth user', function () {
         ->assertOk();
 });
 
-test('the parent_id must be invalid', function () {
+test('the parent_id must be invalid', function (): void {
     $p = WorkspaceEntityModel::props();
     $r = $this->actingAs(User::factory()->create());
     $r->post(route('workspace.store'), [
@@ -40,7 +42,7 @@ test('the parent_id must be invalid', function () {
     $r->post(route('workspace.store'), $arr)->assertOk();
 });
 
-it('shout be avoid name < 2 characters', function () {
+it('shout be avoid name < 2 characters', function (): void {
     $p = WorkspaceEntityModel::props();
     $arr = [
         $p->name => 'a',
@@ -51,7 +53,7 @@ it('shout be avoid name < 2 characters', function () {
         ->assertInvalid(['name' => 'The name field must be at least 2 characters.']);
 });
 
-it('must not be greater than 100 characters', function () {
+it('must not be greater than 100 characters', function (): void {
     $p = WorkspaceEntityModel::props();
     $arr = [
         $p->name => str_pad('a', 101, 'a'),
@@ -62,7 +64,7 @@ it('must not be greater than 100 characters', function () {
         ->assertInvalid(['name' => 'The name field must not be greater than 100 characters.']);
 });
 
-it('should be have a required name', function () {
+it('should be have a required name', function (): void {
     $p = WorkspaceEntityModel::props();
     $arr = [
         $p->name => null,
@@ -73,7 +75,7 @@ it('should be have a required name', function () {
         ->assertInvalid(['name' => 'The name field is required.']);
 });
 
-it('The name field must be a string.', function () {
+it('The name field must be a string.', function (): void {
     $p = WorkspaceEntityModel::props();
     $arr = [
         $p->name => null,
@@ -84,7 +86,7 @@ it('The name field must be a string.', function () {
         ->assertInvalid(['name' => 'The name field must be a string.']);
 });
 
-test('The description field must be a string.', function () {
+test('The description field must be a string.', function (): void {
     $p = WorkspaceEntityModel::props();
     $r = $this->actingAs(User::factory()->create());
     $r->post(route('workspace.store'), [

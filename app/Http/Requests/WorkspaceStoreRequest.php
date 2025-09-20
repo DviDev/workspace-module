@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
 use Modules\Workspace\Models\WorkspaceModel;
 
-class WorkspaceStoreRequest extends FormRequest
+final class WorkspaceStoreRequest extends FormRequest
 {
     public function rules(): array
     {

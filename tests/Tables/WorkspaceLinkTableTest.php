@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Tests\Tables;
 
 use Modules\Base\Services\Tests\BaseTest;
 use Modules\Workspace\Models\WorkspaceLinkModel;
 
-class WorkspaceLinkTableTest extends BaseTest
+final class WorkspaceLinkTableTest extends BaseTest
 {
     public function getModelClass(): string|WorkspaceLinkModel
     {

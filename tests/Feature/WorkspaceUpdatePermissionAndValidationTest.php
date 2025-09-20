@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 use Modules\Workspace\Entities\Workspace\WorkspaceEntityModel;
 use Modules\Workspace\Models\WorkspaceModel;
 
 // uses(TestCase::class)->in(__DIR__);
 
-it('should be owner', function () {
+it('should be owner', function (): void {
     $p = WorkspaceEntityModel::props();
     $model = WorkspaceModel::factory()->create();
     $this->actingAs($model->user);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +20,7 @@ use Modules\Workspace\Models\WorkspaceModel;
 DynamicRoutes::all('Workspace');
 
 Route::middleware(['auth', 'verified'])
-    ->prefix('workspace')->group(function () {
+    ->prefix('workspace')->group(function (): void {
         Route::get('/list', fn () => view('workspace::components.page.workspaces'))->name('admin.workspace.list');
 
         Route::get('/form/{workspace?}', fn (?WorkspaceModel $workspace) => view('workspace::components.page.workspace_edit', compact('workspace')))

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,26 +21,18 @@ use Modules\Workspace\Entities\WorkspaceLink\WorkspaceLinkProps;
  *
  * @method WorkspaceLinkEntityModel toEntity()
  */
-class WorkspaceLinkModel extends BaseModel
+final class WorkspaceLinkModel extends BaseModel
 {
     use WorkspaceLinkProps;
-
-    public function modelEntity(): string
-    {
-        return WorkspaceLinkEntityModel::class;
-    }
-
-    protected static function newFactory(): BaseFactory
-    {
-        return new class extends BaseFactory
-        {
-            protected $model = WorkspaceLinkModel::class;
-        };
-    }
 
     public static function table($alias = null): string
     {
         return self::dbTable('workspace_links', $alias);
+    }
+
+    public function modelEntity(): string
+    {
+        return WorkspaceLinkEntityModel::class;
     }
 
     public function workspace(): BelongsTo
@@ -49,5 +43,13 @@ class WorkspaceLinkModel extends BaseModel
     public function link(): BelongsTo
     {
         return $this->belongsTo(LinkModel::class, 'link_id');
+    }
+
+    protected static function newFactory(): BaseFactory
+    {
+        return new class extends BaseFactory
+        {
+            protected $model = WorkspaceLinkModel::class;
+        };
     }
 }

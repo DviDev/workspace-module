@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Entities\WorkspaceLink;
 
 use Modules\Base\Entities\BaseEntityModel;
@@ -16,7 +18,7 @@ use Modules\Workspace\Models\WorkspaceLinkModel;
  * @method static self new()
  * @method static self props($alias = null, $force = null)
  */
-class WorkspaceLinkEntityModel extends BaseEntityModel
+final class WorkspaceLinkEntityModel extends BaseEntityModel
 {
     use WorkspaceLinkProps;
 }

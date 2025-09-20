@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Tests\Unit;
 
 use App\Models\User;
@@ -9,7 +11,7 @@ use Modules\Workspace\Models\WorkspaceModel;
 use Modules\Workspace\Tests\Feature\WorkspaceValidations;
 use Tests\TestCase;
 
-class WorkspaceUpdateFieldValidationTest extends TestCase
+final class WorkspaceUpdateFieldValidationTest extends TestCase
 {
     use DatabaseMigrations;
     use DatabaseTransactions;
@@ -25,17 +27,17 @@ class WorkspaceUpdateFieldValidationTest extends TestCase
      */
     protected mixed $user;
 
-    public function getRoute()
-    {
-        return route('workspace.update');
-    }
-
     protected function setUp(): void
     {
         parent::setUp();
         $this->user = User::factory()->create();
         $this->actingAs($this->user);
         $this->workspace = WorkspaceModel::factory()->create(['user_id' => $this->user->id]);
+    }
+
+    public function getRoute()
+    {
+        return route('workspace.update');
     }
 
     #[Test]

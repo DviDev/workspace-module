@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Listeners;
 
 use Modules\Person\Events\UserCreatedEvent;
 use Modules\Workspace\Models\WorkspaceModel;
 
-class WorkspaceUserCreatedListener
+final class WorkspaceUserCreatedListener
 {
     /**
      * Handle the event.

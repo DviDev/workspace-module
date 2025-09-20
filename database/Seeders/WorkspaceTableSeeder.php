@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Workspace\Database\Seeders;
 
 use App\Models\User;
@@ -8,7 +10,7 @@ use Modules\Base\Database\Seeders\BaseSeeder;
 use Modules\Person\Models\PersonModel;
 use Modules\Workspace\Models\WorkspaceModel;
 
-class WorkspaceTableSeeder extends BaseSeeder
+final class WorkspaceTableSeeder extends BaseSeeder
 {
     /**
      * Run the database seeds.
@@ -30,7 +32,7 @@ class WorkspaceTableSeeder extends BaseSeeder
                 ['name' => str(__('customers'))->ucfirst()],
                 ['name' => str(__('work'))->ucfirst()]
             )
-            ->afterCreating(function (WorkspaceModel $workspace) {
+            ->afterCreating(function (WorkspaceModel $workspace): void {
                 $persons = PersonModel::factory(2)->create()
                     ->map(fn ($person) => [
                         'person_id' => $person->id,
