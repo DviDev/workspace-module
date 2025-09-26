@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Modules\Base\Contracts\BaseModel;
 use Modules\Base\Factories\BaseFactory;
+use Modules\Builder\Contracts\QueryableByBuilder;
 use Modules\Chat\Models\ChatModel;
 use Modules\Link\Models\LinkModel;
 use Modules\Person\Models\Relations\BelongsToUser;
@@ -35,7 +36,7 @@ use Modules\Workspace\Entities\Workspace\WorkspaceProps;
  *
  * @method WorkspaceEntityModel toEntity()
  */
-final class WorkspaceModel extends BaseModel
+final class WorkspaceModel extends BaseModel implements QueryableByBuilder
 {
     use BelongsToUser;
     use SoftDeletes;
@@ -122,5 +123,14 @@ final class WorkspaceModel extends BaseModel
                 parent::callAfterCreating($instances, $parent);
             }
         };
+    }
+
+    public static function getAllowedBuilderFields(): array
+    {
+        $p = WorkspaceEntityModel::props();
+        return [
+            $p->name,
+            $p->description,
+        ];
     }
 }
