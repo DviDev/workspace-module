@@ -6,7 +6,7 @@ namespace Modules\Workspace\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\Base\Contracts\BaseModel;
-use Modules\Base\Factories\BaseFactory;
+use Modules\Base\Contracts\BaseFactory;
 use Modules\Workspace\Entities\WorkspaceTag\WorkspaceTagEntityModel;
 use Modules\Workspace\Entities\WorkspaceTag\WorkspaceTagProps;
 

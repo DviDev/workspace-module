@@ -6,7 +6,7 @@ namespace Modules\Workspace\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\Base\Contracts\BaseModel;
-use Modules\Base\Factories\BaseFactory;
+use Modules\Base\Contracts\BaseFactory;
 use Modules\Post\Models\PostModel;
 use Modules\Workspace\Entities\WorkspacePost\WorkspacePostEntityModel;
 use Modules\Workspace\Entities\WorkspacePost\WorkspacePostProps;

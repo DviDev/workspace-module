@@ -6,7 +6,7 @@ namespace Modules\Workspace\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\Base\Contracts\BaseModel;
-use Modules\Base\Factories\BaseFactory;
+use Modules\Base\Contracts\BaseFactory;
 use Modules\Project\Models\ProjectModel;
 use Modules\Workspace\Entities\WorkspaceProject\WorkspaceProjectEntityModel;
 use Modules\Workspace\Entities\WorkspaceProject\WorkspaceProjectProps;
