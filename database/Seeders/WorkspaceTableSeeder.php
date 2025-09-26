@@ -6,7 +6,7 @@ namespace Modules\Workspace\Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Modules\Base\Database\Seeders\BaseSeeder;
+use Modules\Base\Contracts\BaseSeeder;
 use Modules\Person\Models\PersonModel;
 use Modules\Workspace\Models\WorkspaceModel;
 
