@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
-use Modules\Base\Contracts\BaseModel;
 use Modules\Base\Contracts\BaseFactory;
+use Modules\Base\Contracts\BaseModel;
 use Modules\Builder\Contracts\QueryableByBuilder;
 use Modules\Chat\Models\ChatModel;
 use Modules\Link\Models\LinkModel;
@@ -128,6 +128,7 @@ final class WorkspaceModel extends BaseModel implements QueryableByBuilder
     public static function getAllowedBuilderFields(): array
     {
         $p = WorkspaceEntityModel::props();
+
         return [
             $p->name,
             $p->description,

@@ -6,8 +6,8 @@ namespace Modules\Workspace\Models;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Modules\Base\Contracts\BaseModel;
 use Modules\Base\Contracts\BaseFactory;
+use Modules\Base\Contracts\BaseModel;
 use Modules\Workspace\Entities\WorkspaceParticipant\WorkspaceParticipantEntityModel;
 use Modules\Workspace\Entities\WorkspaceParticipant\WorkspaceParticipantProps;
 
