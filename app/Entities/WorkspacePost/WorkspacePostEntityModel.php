@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Workspace\Entities\WorkspacePost;
 
-use Modules\Base\Entities\BaseEntityModel;
+use Modules\Base\Contracts\BaseEntityModel;
 use Modules\Workspace\Models\WorkspacePostModel;
 
 /**

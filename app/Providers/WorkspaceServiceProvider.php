@@ -7,7 +7,7 @@ namespace Modules\Workspace\Providers;
 use Illuminate\Support\Facades\Event;
 use Livewire\Livewire;
 use Modules\Base\Contracts\BaseServiceProviderContract;
-use Modules\Base\Events\BaseSeederInitialIndependentDataEvent;
+use Modules\Base\Events\SeedInitialIndependentDataEvent;
 use Modules\DBMap\Events\ScanTableEvent;
 use Modules\Person\Events\UserCreatedEvent;
 use Modules\Project\Events\CreateMenuItemsEvent;
@@ -64,7 +64,7 @@ final class WorkspaceServiceProvider extends BaseServiceProviderContract
 
     protected function registerEvents(): void
     {
-        Event::listen(BaseSeederInitialIndependentDataEvent::class, SeederInitialIndependentSeederDataWorkspaceListener::class);
+        Event::listen(SeedInitialIndependentDataEvent::class, SeederInitialIndependentSeederDataWorkspaceListener::class);
         Event::listen(ScanTableEvent::class, WorkspaceScanTableListener::class);
         Event::listen(ElementPropertyCreatingEvent::class, TranslateViewElementPropertiesListener::class);
 

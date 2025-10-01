@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Modules\Workspace\Database\Seeders;
 
 use Illuminate\Database\Eloquent\Model;
-use Modules\Base\Database\Seeders\BaseSeeder;
+use Modules\Base\Contracts\BaseSeeder;
 
 final class WorkspaceDatabaseSeeder extends BaseSeeder
 {
