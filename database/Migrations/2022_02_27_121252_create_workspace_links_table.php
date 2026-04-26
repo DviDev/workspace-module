@@ -20,7 +20,7 @@ return new class extends Migration
                 ->restrictOnDelete();
 
             $table->unsignedBigInteger($p->link_id);
-            if (collect(Module::allEnabled())->contains('Link')) {
+            if (moduleIsEnabled('Link')) {
                 $table->foreign($p->link_id)
                     ->references('id')->on('links')
                     ->cascadeOnUpdate()

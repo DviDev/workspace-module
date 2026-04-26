@@ -19,7 +19,7 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
             $table->unsignedBigInteger($p->post_id);
-            if (Module::isEnabled('Post')) {
+            if (moduleIsEnabled('Post')) {
                 $table->foreign($p->post_id)->references('id')->on('threads')
                     ->cascadeOnUpdate()->restrictOnDelete();
             }
