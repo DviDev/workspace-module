@@ -6,13 +6,12 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Modules\Workspace\Entities\WorkspaceChat\WorkspaceChatEntityModel;
-use Nwidart\Modules\Facades\Module;
 
 return new class extends Migration
 {
     public function up()
     {
-        if (! collect(Module::allEnabled())->contains('Chat')) {
+        if (! moduleIsEnabled('Chat')) {
             return;
         }
         Schema::create('workspace_chats', function (Blueprint $table): void {
