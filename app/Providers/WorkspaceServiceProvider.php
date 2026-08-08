@@ -25,19 +25,6 @@ use Modules\Workspace\Listeners\WorkspaceUserCreatedListener;
 
 final class WorkspaceServiceProvider extends BaseServiceProviderContract
 {
-    /**
-     * @var string
-     */
-    protected $moduleName = 'Workspace';
-
-    /**
-     * @var string
-     */
-    protected $moduleNameLower = 'workspace';
-
-    /**
-     * Get the services provided by the provider.
-     */
     public function provides(): array
     {
         return [
@@ -84,5 +71,10 @@ final class WorkspaceServiceProvider extends BaseServiceProviderContract
     protected function registerComponents(): void
     {
         Livewire::component('workspace::form', WorkspaceForm::class);
+    }
+
+    protected function langPath(): string
+    {
+        return module_path($this->getModuleName(), 'resources/lang');
     }
 }
